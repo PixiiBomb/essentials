@@ -1,9 +1,9 @@
-name: Publish to npm
+name: Publish to NPM
 
 on:
   push:
     branches:
-      - main
+        - master
 
 jobs:
   publish:
@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
+          registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
         run: npm install
@@ -27,8 +28,7 @@ jobs:
       - name: Login to npm
         run: npm login --registry=https://registry.npmjs.org/
 
-      - name: Publish package to npm
+      - name: Publish package to NPM
         run: npm publish --access public
-        working-directory: packages
         env:
             NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
