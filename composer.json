@@ -5,7 +5,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Pixii",
+            "name": "PixiiBomb",
             "email": "pixii@pixiibomb.com"
         }
     ],
@@ -29,5 +29,9 @@
     "require": {
         "twbs/bootstrap": "^5.0",
         "twbs/bootstrap-icons": "^1.10"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/PixiiBomb/essentials.git"
     }
 }
