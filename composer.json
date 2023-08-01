@@ -1,7 +1,7 @@
 {
     "name": "pixiibomb/essentials",
     "description": "A standard package for all PixiiBomb projects.",
-    "type": "project",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
@@ -25,7 +25,6 @@
             ]
         }
     },
-    "minimum-stability": "dev",
     "require": {
         "twbs/bootstrap": "^5.0",
         "twbs/bootstrap-icons": "^1.10"

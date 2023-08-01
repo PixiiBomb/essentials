@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "85345d47d6a94f84fe9bce931feef966",
+    "content-hash": "b43bb602be9d29364e4743047689c83a",
     "packages": [
         {
             "name": "twbs/bootstrap",
-            "version": "v5.3.0-alpha3",
+            "version": "v5.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "ac576614a5515e429f27e756fad81d5aa05e95a6"
+                "reference": "2a1bf52b73fc9a97f6fef75aa1b29b3e9f0288b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/ac576614a5515e429f27e756fad81d5aa05e95a6",
-                "reference": "ac576614a5515e429f27e756fad81d5aa05e95a6",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/2a1bf52b73fc9a97f6fef75aa1b29b3e9f0288b3",
+                "reference": "2a1bf52b73fc9a97f6fef75aa1b29b3e9f0288b3",
                 "shasum": ""
             },
             "replace": {
@@ -52,22 +52,22 @@
             ],
             "support": {
                 "issues": "https://github.com/twbs/bootstrap/issues",
-                "source": "https://github.com/twbs/bootstrap/tree/v5.3.0-alpha3"
+                "source": "https://github.com/twbs/bootstrap/tree/v5.3.1"
             },
-            "time": "2023-04-03T07:26:50+00:00"
+            "time": "2023-07-26T07:46:38+00:00"
         },
         {
             "name": "twbs/bootstrap-icons",
-            "version": "v1.10.4",
+            "version": "v1.10.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/icons.git",
-                "reference": "d7747f9b467de4d62841e2308367a88eaacc9aac"
+                "reference": "648aa8238437d9da9227f6273cc163ec5841382d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/icons/zipball/d7747f9b467de4d62841e2308367a88eaacc9aac",
-                "reference": "d7747f9b467de4d62841e2308367a88eaacc9aac",
+                "url": "https://api.github.com/repos/twbs/icons/zipball/648aa8238437d9da9227f6273cc163ec5841382d",
+                "reference": "648aa8238437d9da9227f6273cc163ec5841382d",
                 "shasum": ""
             },
             "type": "library",
@@ -91,14 +91,14 @@
             ],
             "support": {
                 "issues": "https://github.com/twbs/icons/issues",
-                "source": "https://github.com/twbs/icons/tree/v1.10.4"
+                "source": "https://github.com/twbs/icons/tree/v1.10.5"
             },
-            "time": "2023-04-03T18:12:42+00:00"
+            "time": "2023-04-26T19:56:04+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
