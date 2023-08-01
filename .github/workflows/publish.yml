@@ -22,10 +22,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build package
-        run: npm run build
-
-      - name: Login to npm
+      - name: Login to NPM
         run: npm login --registry=https://registry.npmjs.org/
 
       - name: Publish package to NPM
