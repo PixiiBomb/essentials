@@ -20,9 +20,9 @@
     <title>{{ $meta->getTitle() }}</title>
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('css/palette.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/containers.min.css') }}">
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">-->
+    <!--<link rel="stylesheet" href="{{ asset('css/palette.min.css') }}">-->
+    <!--<link rel="stylesheet" href="{{ asset('css/containers.min.css') }}">-->
 </head>
 
 <body>
@@ -31,7 +31,7 @@
 
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/bootstrap.js') }}"></script>
-<script src="{{ asset('js/common.js') }}"></script>
+<!--<script src="{{ asset('js/common.js') }}"></script> -->
 
 @isset($scripts)
     @foreach($scripts as $script)

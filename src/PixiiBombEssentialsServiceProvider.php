@@ -18,7 +18,10 @@ class PixiiBombEssentialsServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/setup.php' => config_path(PIXII.'.php'),
-        ]);
+        ], 'config');
+        $this->publishes([
+            __DIR__.'/../public' => public_path(),
+        ], 'public');
         /*$this->app->bind(RegisterUserRequest::class, function ($app) {
             return new RegisterUserRequest();
         }) */
