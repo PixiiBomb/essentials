@@ -28,8 +28,8 @@ class PixiiBombEssentialsServiceProvider extends ServiceProvider
             $this->fromPackage('public', false) => public_path(),
         ], 'public');
         $this->publishes([
-            $this->fromPackage('resources/views', false) => resource_path(),
-        ], 'views');
+            $this->fromPackage('resources', false) => resource_path(),
+        ], 'resources');
     }
 
     /**
