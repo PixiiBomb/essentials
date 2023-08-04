@@ -6,25 +6,30 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use PixiiBomb\Essentials\Requests\RegisterUserRequest;
 
 
 class PixiiBombEssentialsServiceProvider extends ServiceProvider
 {
+    private function fromPackage($path, $isFile = true): string
+    {
+        $extension = $isFile ? '.php' : null;
+        return __DIR__.'/../'.$path.$extension;
+    }
+
     /**
      * Register services.
      */
     public function register(): void
     {
         $this->publishes([
-            __DIR__.'/../config/setup.php' => config_path(PIXII.'.php'),
+            $this->fromPackage('config/setup') => config_path(PIXII.'.php'), //__DIR__.'/../config/setup.php'
         ], 'config');
         $this->publishes([
-            __DIR__.'/../public' => public_path(),
+            $this->fromPackage('public', false) => public_path(),
         ], 'public');
-        /*$this->app->bind(RegisterUserRequest::class, function ($app) {
-            return new RegisterUserRequest();
-        }) */
+        $this->publishes([
+            $this->fromPackage('resources/views', false) => resource_path(),
+        ], 'views');
     }
 
     /**
@@ -37,15 +42,12 @@ class PixiiBombEssentialsServiceProvider extends ServiceProvider
         Route::prefix('')
             ->group(function() {
                 $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+                $this->loadRoutesFrom(__DIR__ . '/../routes/user.php');
             });
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views/', PIXII);
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang/', PIXII);
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/');
-
-        /*$this->publishes([
-            __DIR__ . '/../resources/lang/' => resource_path('lang/vendor/pixii'),
-        ], 'translations');*/
 
         $this->mergeConfigFrom(__DIR__.'/../config/setup.php', PIXII);
 

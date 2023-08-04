@@ -3,7 +3,7 @@
     if(!isset($content)) { return; }
 @endphp
 
-@extends(getFromPackage('layouts.content'))
+@extends('layouts.content')
 
 @section(BREADCRUMBS)
     @if(!is_null($content->getBreadcrumbs()))
