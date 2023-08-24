@@ -13,6 +13,6 @@
 
 @if(!is_null($data->getComponent()))
     <div class="{{ $data->getIsFluid() }}">
-        <x-dynamic-component :component="getFromPackage($data->getComponent()->componentName)" :data="$data->getComponent()"></x-dynamic-component>
+        <x-dynamic-component :component="$data->getComponent()->componentName" :data="$data->getComponent()"></x-dynamic-component>
     </div>
 @endif

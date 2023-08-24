@@ -9,7 +9,7 @@ class Container extends PixiiComponent
     protected ?string $title = null;
     protected ?string $subtitle = null;
     protected ?string $description = null;
-    protected ?string $filename = null;
+    protected ?string $view = null;
     protected $containerData = null;
     protected ?Component $component = null;
     protected ?string $isFluid = 'container';
@@ -24,9 +24,9 @@ class Container extends PixiiComponent
         return $this->containerData;
     }
 
-    public function getFilename(): ?string
+    public function getView(): ?string
     {
-        return $this->filename;
+        return $this->view;
     }
 
     public function getComponent(): ?Component
@@ -61,10 +61,10 @@ class Container extends PixiiComponent
      * /resources/views/.
      * @return $this
      */
-    public function setFilename(?string $filename = null): Container
+    public function setView(?string $filename = null): Container
     {
         $ignore = [COMPONENTS, ERRORS, LAYOUTS];
-        $this->filename = viewExists($filename, $ignore);
+        $this->view = viewExists($filename, $ignore);
         return $this;
     }
 

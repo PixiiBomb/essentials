@@ -43,4 +43,4 @@
 
 @endsection
 
-<x-dynamic-component :component="getFromPackage(FORM)" :data="$data"></x-dynamic-component>
+<x-dynamic-component :component="FORM" :data="$data"></x-dynamic-component>

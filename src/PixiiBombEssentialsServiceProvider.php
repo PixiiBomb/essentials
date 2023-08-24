@@ -22,13 +22,13 @@ class PixiiBombEssentialsServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->publishes([
-            $this->fromPackage('config/setup') => config_path(PIXII.'.php'), //__DIR__.'/../config/setup.php'
+            $this->fromPackage('publish/config/setup') => config_path(PIXII.'.php'), //__DIR__.'/../config/setup.php'
         ], 'config');
         $this->publishes([
-            $this->fromPackage('public', false) => public_path(),
+            $this->fromPackage('publish/public', false) => public_path(),
         ], 'public');
         $this->publishes([
-            $this->fromPackage('resources', false) => resource_path(),
+            $this->fromPackage('publish/resources', false) => resource_path(),
         ], 'resources');
     }
 
@@ -39,7 +39,7 @@ class PixiiBombEssentialsServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        Route::prefix('')
+        /*Route::prefix('')
             ->group(function() {
                 $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
                 $this->loadRoutesFrom(__DIR__ . '/../routes/user.php');
@@ -51,7 +51,7 @@ class PixiiBombEssentialsServiceProvider extends ServiceProvider
 
         $this->mergeConfigFrom(__DIR__.'/../config/setup.php', PIXII);
 
-        $this->registerComponents();
+        $this->registerComponents();*/
     }
 
     /**

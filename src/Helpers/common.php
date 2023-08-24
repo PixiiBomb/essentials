@@ -157,10 +157,6 @@
                     return E404;
         }
 
-        $view_from_package = getFromPackage($view);
-        if(view()->exists($view_from_package))
-            return $view_from_package;
-
         if(view()->exists($view))
             return $view;
 

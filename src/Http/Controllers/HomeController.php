@@ -20,7 +20,7 @@ class HomeController extends ContentController
         $containers = [
             (new Container())
                 ->setAlias($jumbotron)
-                ->setFilename($this->localContent($jumbotron))
+                ->setView($this->localContent($jumbotron))
                 ->setIsFluid(true),
             (new Container())
                 ->setAlias('FAQs')

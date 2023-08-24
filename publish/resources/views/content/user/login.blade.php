@@ -27,7 +27,7 @@
 @endsection
 
 <x-dynamic-component
-    :component="getFromPackage(FORM)"
+    :component="FORM"
     :data="$container_data">
 </x-dynamic-component>
 

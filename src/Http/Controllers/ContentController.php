@@ -28,7 +28,7 @@ class ContentController extends Controller
         $containers = [
             (new Container())
                 ->setAlias($alias)
-                ->setFilename($this->filename($alias))
+                ->setView($this->filename($alias))
         ];
 
         $content = new Content($meta, $containers);

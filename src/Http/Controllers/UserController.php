@@ -46,7 +46,7 @@ class UserController extends ContentController
         $containers = [
             (new Container())
                 ->setAlias($alias)
-                ->setFilename($this->filename($alias))
+                ->setView($this->filename($alias))
                 ->setContainerData($form)
         ];
 
@@ -80,7 +80,7 @@ class UserController extends ContentController
         $containers = [
             (new Container())
                 ->setAlias($alias)
-                ->setFilename($this->filename($alias))
+                ->setView($this->filename($alias))
                 ->setContainerData($form)
         ];
 

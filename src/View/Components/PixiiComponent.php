@@ -62,7 +62,7 @@ class PixiiComponent extends Component
     public function getAlias(): ?string { return ($this->alias == null) ? formatRandomIdentifier() : $this->alias; }
     public function getItems(): array { return $this->items; }
     public function getStyle(): ?string { return $this->style; }
-    public function getdata(): ?PixiiComponent { return $this->data; }
+    public function getData(): ?PixiiComponent { return $this->data; }
 
     /**
      * Set base class's (Component) public property (componentName) to the derived class's "nickname".

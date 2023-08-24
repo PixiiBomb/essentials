@@ -8,7 +8,7 @@
 @section(BREADCRUMBS)
     @if(!is_null($content->getBreadcrumbs()))
         <x-dynamic-component
-            :component="getFromPackage(BREADCRUMBS)"
+            :component="{{BREADCRUMBS}}"
             :data="$content->getBreadcrumbs()">
         </x-dynamic-component>
     @endif
@@ -24,7 +24,7 @@
     @if(!is_null($content->getContainers()))
         @foreach($content->getContainers() as $container)
             <x-dynamic-component
-                :component="getFromPackage(CONTAINER)"
+                :component="{{CONTAINER}}"
                 :data="$container"
                 :errors="$errors">
             </x-dynamic-component>
