@@ -10,7 +10,7 @@
             <span>This information will be displayed publicly so be careful what you share.</span>
         </div>
         <div class="col-8">
-            @include('pixii::content.user.update-personal')
+            @include('content.user.update-personal')
         </div>
     </div>
 

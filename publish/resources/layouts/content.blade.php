@@ -1,4 +1,4 @@
-@extends('pixii::app')
+@extends('layouts.app')
 
 @section(LAYOUT)
     @yield(NAVIGATION)
