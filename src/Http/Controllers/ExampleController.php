@@ -9,7 +9,7 @@ use PixiiBomb\Essentials\View\Components\Accordion;
 use PixiiBomb\Essentials\View\Items\AccordionItem;
 use PixiiBomb\Essentials\View\Components\Container;
 
-class HomeController extends ContentController
+class ExampleController extends ContentController
 {
     public function index(): View
     {
