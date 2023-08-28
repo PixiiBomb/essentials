@@ -22,7 +22,7 @@ class Content
      * @param array $scripts
      * @param ?string $navigationFile
      */
-    public function __construct(protected Meta $meta, protected array $containers, protected array $scripts = [], string $navigationFile = null)
+    public function __construct(protected Meta $meta, protected array $containers = [], protected array $scripts = [], string $navigationFile = null)
     {
         $this->setContainers($containers);
         $this->setScripts($scripts);
@@ -45,7 +45,7 @@ class Content
      * displayed in the 'breadcrumbs' placeholder on the layout.
      * @return $this
      */
-    public function setBreadcrumbs(bool $breadcrumbs = false): Content
+    public function setBreadcrumbs(bool $breadcrumbs = Breadcrumbs::DEFAULT_SHOW_BREADCRUMBS): Content
     {
         $this->breadcrumbs = (new Breadcrumbs())->setShowBreadcrumbs($breadcrumbs);
         return $this;

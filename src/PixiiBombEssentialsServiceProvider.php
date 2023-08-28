@@ -2,6 +2,7 @@
 
 namespace PixiiBomb\Essentials;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,10 +16,10 @@ class PixiiBombEssentialsServiceProvider extends ServiceProvider
     {
         /*$this->publishes([
             $this->fromPackage('publish/public', false) => public_path(),
-        ], 'public');
+        ], 'public');*/
         $this->publishes([
             $this->fromPackage('publish/resources', false) => resource_path(),
-        ], 'resources'); */
+        ], 'resources'); 
     }
 
     /**
@@ -27,6 +28,8 @@ class PixiiBombEssentialsServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Schema::defaultStringLength(191);
+
+        Blade::componentNamespace('PixiiBomb\\Essentials\\View\\Components', PIXII);
     }
 
     private function fromPackage($path, $isFile = true): string

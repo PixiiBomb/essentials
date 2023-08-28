@@ -17,7 +17,7 @@ class ExampleController extends ContentController
 
         $meta = new Meta('Home Page');
 
-        $containers = [
+        /*$containers = [
             (new Container())
                 ->setAlias($jumbotron)
                 ->setView($this->localContent($jumbotron))
@@ -25,11 +25,11 @@ class ExampleController extends ContentController
             (new Container())
                 ->setAlias('FAQs')
                 ->setComponent($this->componentFunFaqs())
-        ];
+        ]; */
 
-        $content = new Content($meta, $containers);
+        $content = new Content($meta, []);
 
-        return parent::view($content);
+        return parent::layout($content);
     }
 
     public function componentFunFaqs(): Accordion

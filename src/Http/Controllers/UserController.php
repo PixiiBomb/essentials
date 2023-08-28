@@ -51,7 +51,7 @@ class UserController extends ContentController
         ];
 
         $content = new Content($meta, $containers);
-        return self::view($content);
+        return self::layout($content);
     }
 
     public function authenticate(LoginUserRequest $request): RedirectResponse
@@ -85,7 +85,7 @@ class UserController extends ContentController
         ];
 
         $content = new Content($meta, $containers);
-        return self::view($content);
+        return self::layout($content);
     }
 
     public function create(RegisterUserRequest $request): RedirectResponse

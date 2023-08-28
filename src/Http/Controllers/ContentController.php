@@ -21,6 +21,23 @@ class ContentController extends Controller
     {
     }
 
+    /**
+     * Each method within a Controller, (that extends ContentController), should return parent::layout($content)
+     * to render a new View.
+     * @param Content $content
+     * @return View Returns a view with an array of data.
+     */
+    protected function layout(Content $content): View
+    {
+        return view('layouts.content')->with([CONTENT => $content]);
+    }
+
+
+    /**
+     *
+     * @param string $alias
+     * @return View
+     */
     protected function setup(string $alias): View
     {
         $meta = new Meta($alias);
@@ -33,21 +50,7 @@ class ContentController extends Controller
 
         $content = new Content($meta, $containers);
 
-        return self::view($content);
-    }
-
-    /**
-     * Each method within a Controller, (that extends ContentController), should return parent::setup($content)
-     * to render a new View.
-     * @param Content $content
-     * @param bool $packageDirectory
-     * @return View Returns a view with an array of data.
-     */
-    protected function view(Content $content, bool $packageDirectory = true): View
-    {
-        $index = $this->directoryIndex();
-        $file = $packageDirectory ? getFromPackage($index) : $index;
-        return view($file)->with([CONTENT => $content]);
+        return self::layout($content);
     }
 
     /*protected function abort(): View
@@ -63,7 +66,7 @@ class ContentController extends Controller
     }*/
 
     /**
-     * The "index file" for all Content should be located in /resources/views/content/embed.blade.php.
+     * The "index file" for all Content should be located in /resources/views/content/index.blade.php.
      * @return string The "index file" represented in dot-notation.
      */
     protected function directoryIndex(): string

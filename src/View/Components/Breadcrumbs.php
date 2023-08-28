@@ -6,8 +6,10 @@ use PixiiBomb\Essentials\View\Items\NavigationItem;
 
 class Breadcrumbs extends PixiiComponent
 {
+    const DEFAULT_SHOW_BREADCRUMBS = true;
+
     protected array $breadcrumbs = [];
-    protected bool $showBreadcrumbs = false;
+    protected bool $showBreadcrumbs = self::DEFAULT_SHOW_BREADCRUMBS;
 
     public function getBreadcrumbs(): array { return $this->breadcrumbs; }
     public function getShowBreadcrumbs(): bool { return $this->showBreadcrumbs; }

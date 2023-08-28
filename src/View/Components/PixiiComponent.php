@@ -7,16 +7,18 @@ use Illuminate\View\Component;
 class PixiiComponent extends Component
 {
     protected ?string $alias = null;
+    protected ?string $filename = null;
     protected ?string $style = null;
     protected array $items = [];
     protected array $styles = [];
 
     /**
      * Create a new component instance.
-     * @param null $data
+     * @param null $details
      */
-    public function __construct(public $data = null, public $errors = [])
+    public function __construct(public $details = null, public $errors = [])
     {
+        $this->setDetails($details);
         $this->setName();
         $this->setStyle($this->style);
     }
@@ -24,9 +26,10 @@ class PixiiComponent extends Component
     /**
      * Get the view / contents that represent the component.
      */
-    public function render()
+    public function render(): \Illuminate\Contracts\View\View
     {
-        return null;
+        $filename = $this->getFileName();
+        return view("components.{$filename}");
     }
 
     /**
@@ -55,14 +58,20 @@ class PixiiComponent extends Component
      */
     public function valid(): bool
     {
-        return $this->data instanceof PixiiComponent;
+        return $this->details instanceof PixiiComponent;
     }
 
     public function getName(): ?string { return $this->componentName; }
+    public function getFileName(): ?string { return $this->filename; }
     public function getAlias(): ?string { return ($this->alias == null) ? formatRandomIdentifier() : $this->alias; }
     public function getItems(): array { return $this->items; }
     public function getStyle(): ?string { return $this->style; }
-    public function getData(): ?PixiiComponent { return $this->data; }
+    public function getDetails(): ?PixiiComponent { return $this->details; }
+
+    protected function setDetails(?PixiiComponent $details): void
+    {
+        $this->details = $details;
+    }
 
     /**
      * Set base class's (Component) public property (componentName) to the derived class's "nickname".
@@ -76,6 +85,21 @@ class PixiiComponent extends Component
     private function setName(): void
     {
         $this->componentName = basename(get_class($this));
+        $this->setFileName($this->componentName);
+    }
+
+    private function setFileName(string $name): void
+    {
+        $view = '';
+        $split = preg_split('/(?=[A-Z])/', $name, -1,PREG_SPLIT_NO_EMPTY);
+
+        foreach($split as $word)
+            $view .= strtolower($word) . '-';
+
+        $components = COMPONENTS;
+        $view = rtrim($view, '-');
+
+        $this->filename = strtolower($name);
     }
 
     /**
