@@ -1,6 +1,7 @@
 <?php
 
-    use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Str;
 
     /**
      * The 'confirmed' rule in Laravel expects a second input field with the same name as the original.
@@ -54,6 +55,12 @@
         return strtolower("{$package_prefix}::{$component}");
     }
 
+    function package_path(?string $path = null): string
+    {
+        $include = !is_null($path) ? '' : $path;
+        return base_path("packages\\pixiibomb\\essentials\\{$include}");
+    }
+
     /**
      * Component's MUST have an alias, even though the attribute is optional. (The attribute is optional to reduce
      * redundancy when creating the component in a Controller and then passing the $object to a dynamic component)
@@ -62,7 +69,7 @@
      */
     function formatRandomIdentifier(): string
     {
-        return formatIdentifier(uniqid(chr(rand(65, 90))));
+        return formatId(uniqid(chr(rand(65, 90))));
     }
 
     /**
@@ -73,7 +80,7 @@
      * @param bool $hasSymbol Optionally return the # symbol along with the formatted $key.
      * @return string The $key formatted to Title-Kebab-Case.
      */
-    function formatIdentifier(int|string $key, bool $hasSymbol = false): string
+    function formatId(int|string $key, bool $hasSymbol = false): string
     {
         $prefix = $hasSymbol ? '#' : '';
         return $prefix.Str::title(Str::slug($key));
@@ -114,7 +121,7 @@
      * The standard naming convention for Laravel view-models is "{NAME}Controller" where {NAME} is the custom
      * name you've given to the Controller. This function will return the Controller's basename and exclude the
      * string "Controller".
-     * @example 'App\Http\view-models\HomeController' will be formatted to 'Home'
+     * @example 'App\Http\Controllers\HomeController' will be formatted to 'Home'
      * @param string $controller The string name of a Controller class.
      * @return string The $controller formatted to it's "nickname".
      */
@@ -174,6 +181,20 @@
         return file_exists($public)
             ? asset($path)
             : null;
+    }
+
+    function validateView(string $filename): ?string
+    {
+        if(siteDebugOn())
+        {
+            return view()->exists($filename)
+                ? $filename
+                : E404; // @todo load from vendor
+        }
+        else
+        {
+            return null;
+        }
     }
 
     /**
@@ -236,4 +257,74 @@
             $asset[$key] = $pixiiPath;
 
         return file_exists($pixiiPath) ? $pixiiPath : $key;
+    }
+
+    /**
+     * Filters an array to include only elements of a specific type.
+     * This function iterates through the given array and removes elements that are not instances of
+     * the specified type. The original array remains unchanged, and a new filtered array is returned.
+     * @param string $type The fully qualified class name to filter by.
+     * @param array $items The array to filter.
+     * @return array The filtered array containing only elements of the specified type.
+     */
+    function filterArray(string $type, array $items): array
+    {
+        foreach ($items as $key => $item) {
+            if (!$item instanceof $type) {
+                unset($items[$key]);
+            }
+        }
+        return $items;
+    }
+
+    /**
+     * Creates a route from a given path. If the provided path does not start with a '/', this function
+     * adds a leading '/' to ensure that it represents a valid route. The modified path is then returned.
+     * @param string $path The path to create a route from.
+     * @return string The modified path with a leading '/' if necessary.
+     */
+    function createRouteFromPath(string $path): string
+    {
+        if (!str_starts_with($path, '/')) {
+            $path = '/' . $path;
+        }
+        return $path;
+    }
+
+    /**
+     * Compare a string url to the page Request's url to determine if we're on that exact page.
+     * @param string $url The url to compare to the page request.
+     * @return bool If the urls strings are a match, this function returns true; otherwise: false.
+     */
+    function urlIsActive(string $url): bool
+    {
+        return $url == Request::url();
+    }
+
+    function titleCase(string $value): string
+    {
+        return ucwords(strtolower($value));
+    }
+
+    function getFragment(string $fragment): string
+    {
+        return "fragments.{$fragment}";
+    }
+
+    function siteDebugOn()
+    {
+        return env(ENV_DEBUG);
+    }
+
+    /* Configs */
+    function getPrimaryLayout()
+    {
+        $key = LAYOUT_APP;
+        return config("pixii.config.{$key}");
+    }
+
+    function getDefaultNavbarView()
+    {
+        $key = DEFAULT_NAVBAR_VIEW;
+        return config("pixii.config.{$key}");
     }

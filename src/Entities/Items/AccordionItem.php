@@ -1,6 +1,6 @@
 <?php
 
-namespace PixiiBomb\Essentials\View\Items;
+namespace PixiiBomb\Essentials\Entities\Items;
 
 use Illuminate\View\View;
 

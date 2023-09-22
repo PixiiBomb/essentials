@@ -2,7 +2,7 @@
 
 namespace PixiiBomb\Essentials\View\Components;
 
-use PixiiBomb\Essentials\View\Items\NavigationItem;
+use PixiiBomb\Essentials\Entities\Items\NavigationItem;
 
 class Breadcrumbs extends PixiiComponent
 {

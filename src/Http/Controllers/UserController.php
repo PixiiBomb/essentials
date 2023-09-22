@@ -6,16 +6,21 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use PixiiBomb\Essentials\Models\Content;
-use PixiiBomb\Essentials\Models\Meta;
+use PixiiBomb\Essentials\Entities\Page;
+use PixiiBomb\Essentials\Entities\Meta;
 use PixiiBomb\Essentials\Models\PixiiUser;
 use PixiiBomb\Essentials\Requests\LoginUserRequest;
 use PixiiBomb\Essentials\Requests\RegisterUserRequest;
 use PixiiBomb\Essentials\View\Components\Container;
 use PixiiBomb\Essentials\View\Components\Form;
 
-class UserController extends ContentController
+class UserController extends PageController
 {
+    public static function getRoute(string $route): string
+    {
+        return concatenateRoute(USER, $route);
+    }
+
     protected function updateProfile()
     {
 
@@ -50,7 +55,7 @@ class UserController extends ContentController
                 ->setContainerData($form)
         ];
 
-        $content = new Content($meta, $containers);
+        $content = new Page($meta, $containers);
         return self::layout($content);
     }
 
@@ -84,7 +89,7 @@ class UserController extends ContentController
                 ->setContainerData($form)
         ];
 
-        $content = new Content($meta, $containers);
+        $content = new Page($meta, $containers);
         return self::layout($content);
     }
 

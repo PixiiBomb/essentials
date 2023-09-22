@@ -14,7 +14,7 @@ use PixiiBomb\Essentials\Requests\RegisterUserRequest;
 use PixiiBomb\Essentials\View\Components\Container;
 use PixiiBomb\Essentials\View\Components\Form;
 
-class AuthenticationController extends ContentController
+class AuthenticationController extends PageController
 {
 
 

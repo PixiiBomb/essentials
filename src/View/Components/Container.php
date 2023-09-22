@@ -10,29 +10,34 @@ class Container extends PixiiComponent
     protected ?string $subtitle = null;
     protected ?string $description = null;
     protected ?string $view = null;
-    protected $containerData = null;
+    private ?string $attemptedView = null;
     protected ?Component $component = null;
-    protected ?string $isFluid = 'container';
+    protected bool|string $isFluid = true;
+    protected array $data = [];
 
-    public function getIsFluid(): string
+    public function __construct($details = null, $errors = [])
     {
-        return $this->isFluid;
+        parent::__construct($details, $errors);
+        $this->setIsFluid($this->isFluid);
     }
 
-    public function getContainerData()
+    public function quickView(?string $view, bool $isFluid = true): Container
     {
-        return $this->containerData;
+        $this->setAlias($view);
+        $this->setView($view);
+        $this->setIsFluid($isFluid);
+        return $this;
     }
 
-    public function getView(): ?string
-    {
-        return $this->view;
-    }
+    public function getData(): array { return $this->data; }
 
-    public function getComponent(): ?Component
-    {
-        return $this->component;
-    }
+    public function getIsFluid(): bool|string { return $this->isFluid; }
+
+    public function getView(): ?string { return $this->view; }
+
+    public function getComponent(): ?Component { return $this->component; }
+
+    public function getAttemptedView(): ?string { return $this->attemptedView; }
 
     /**
      * A title, subtitle and description can be passed into the $content object. This function combines 'title' and 'subtitle'
@@ -61,10 +66,10 @@ class Container extends PixiiComponent
      * /resources/views/.
      * @return $this
      */
-    public function setView(?string $filename = null): Container
+    public function setView(?string $filename): Container
     {
-        $ignore = [COMPONENTS, ERRORS, LAYOUTS];
-        $this->view = viewExists($filename, $ignore);
+        $this->attemptedView = $filename;
+        $this->view = validateView($filename);
         return $this;
     }
 
@@ -74,15 +79,15 @@ class Container extends PixiiComponent
         return $this;
     }
 
-    public function setContainerData($containerData): Container
-    {
-        $this->containerData = $containerData;
-        return $this;
-    }
-
     public function setIsFluid(bool $isFluid): Container
     {
         $this->isFluid = $isFluid ? 'container-fluid' : 'container';
+        return $this;
+    }
+
+    public function setData(array $data): Container
+    {
+        $this->data = $data;
         return $this;
     }
 }

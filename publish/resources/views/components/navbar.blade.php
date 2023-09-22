@@ -1,5 +1,6 @@
 @php
-    if(auth()->user() != null) { $user = auth()->user(); }
+    /** * @var $details */
+    if(!isset($details)) { return; }
 @endphp
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -9,12 +10,13 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route(HOME) }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#">Skills</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,13 +36,13 @@
 
             <div>
                 @auth()
-                    Welcome, {{ $user->username }} | <a href="{{ concatenateRoute(USER, LOGOUT) }}">Logout</a>
+                    Welcome, {{ $user->username }} | <a href="{{ UserController::getRoute(LOGOUT) }}">Logout</a>
                 @endauth
 
                 @guest()
-                    <a href="{{ concatenateRoute(USER, LOGIN) }}">Login</a>
+                    <a href="{{ UserController::getRoute(LOGIN) }}">Login</a>
                     |
-                    <a href="{{ concatenateRoute(USER, REGISTER) }}">Register</a>
+                    <a href="{{ UserController::getRoute(REGISTER) }}">Register</a>
                 @endguest
             </div>
 

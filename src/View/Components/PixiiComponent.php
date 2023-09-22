@@ -2,6 +2,7 @@
 
 namespace PixiiBomb\Essentials\View\Components;
 
+use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
 class PixiiComponent extends Component
@@ -28,7 +29,7 @@ class PixiiComponent extends Component
      */
     public function render(): \Illuminate\Contracts\View\View
     {
-        $filename = $this->getFileName();
+        $filename = $this->getComponentView();
         return view("components.{$filename}");
     }
 
@@ -47,9 +48,8 @@ class PixiiComponent extends Component
     public function id(bool $hasSymbol = false, ?int $i = null, ?string $suffix = null): string
     {
         $name = $this->getName();
-        $alias = $this->getAlias() ?? $this->getAlias();
-
-        return formatIdentifier("{$name} {$alias} {$i} {$suffix}", $hasSymbol);
+        $alias = $this->getAlias();
+        return formatId("{$name} {$alias} {$i} {$suffix}", $hasSymbol);
     }
 
     /**
@@ -62,8 +62,8 @@ class PixiiComponent extends Component
     }
 
     public function getName(): ?string { return $this->componentName; }
-    public function getFileName(): ?string { return $this->filename; }
-    public function getAlias(): ?string { return ($this->alias == null) ? formatRandomIdentifier() : $this->alias; }
+    public function getComponentView(): ?string { return $this->filename; }
+    public function getAlias(): ?string { return $this->alias; }
     public function getItems(): array { return $this->items; }
     public function getStyle(): ?string { return $this->style; }
     public function getDetails(): ?PixiiComponent { return $this->details; }
@@ -85,10 +85,15 @@ class PixiiComponent extends Component
     private function setName(): void
     {
         $this->componentName = basename(get_class($this));
-        $this->setFileName($this->componentName);
+        $this->setComponentView($this->componentName);
     }
 
-    private function setFileName(string $name): void
+    /**
+     * The component's view should be identical to the class name, written in kebab-case.
+     * @param string $name
+     * @return void
+     */
+    private function setComponentView(string $name): void
     {
         $view = '';
         $split = preg_split('/(?=[A-Z])/', $name, -1,PREG_SPLIT_NO_EMPTY);
@@ -99,7 +104,7 @@ class PixiiComponent extends Component
         $components = COMPONENTS;
         $view = rtrim($view, '-');
 
-        $this->filename = strtolower($name);
+        $this->filename = Str::slug($name); // this was strtolower($name)
     }
 
     /**
@@ -113,7 +118,7 @@ class PixiiComponent extends Component
      */
     public function setAlias(string $alias): PixiiComponent
     {
-        $this->alias = $alias; //formatIdentifier($alias);
+        $this->alias = $alias ?? formatRandomIdentifier();
         return $this;
     }
 
@@ -131,23 +136,5 @@ class PixiiComponent extends Component
         $styles = $this->styles;
         $this->style = in_array($style, $styles) ? $style : $this->style;
         return $this;
-    }
-
-    /**
-     * Some Components require a group of items (ie: Accordion, Carousel, List, etc).
-     * A child of ContentComponent should create a "public function item()" which acts as a constructor for the
-     * Component when it's called from a Controller. Each item() should be stored in an array that can be set here.
-     * @param $type
-     * @param array $items
-     */
-    public function filterItems($type, array $items = [])
-    {
-        foreach ($items as $key => $item) {
-            if (!$item instanceof $type) {
-                unset($items[$key]);
-            }
-        }
-
-        $this->items = $items;
     }
 }

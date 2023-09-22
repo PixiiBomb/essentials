@@ -19,7 +19,10 @@ class PixiiBombEssentialsServiceProvider extends ServiceProvider
         ], 'public');*/
         $this->publishes([
             $this->fromPackage('publish/resources', false) => resource_path(),
-        ], 'resources'); 
+        ], 'resources');
+        $this->publishes([
+            $this->fromPackage('publish/config', false) => config_path(),
+        ], 'config');
     }
 
     /**
@@ -30,6 +33,10 @@ class PixiiBombEssentialsServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Blade::componentNamespace('PixiiBomb\\Essentials\\View\\Components', PIXII);
+
+        Blade::if(DEBUG, function() {
+            return env('APP_DEBUG');
+        });
     }
 
     private function fromPackage($path, $isFile = true): string

@@ -3,21 +3,21 @@
 namespace PixiiBomb\Essentials\Http\Controllers;
 
 use Illuminate\View\View;
-use PixiiBomb\Essentials\Models\Content;
-use PixiiBomb\Essentials\Models\Meta;
+use PixiiBomb\Essentials\Entities\Page;
+use PixiiBomb\Essentials\Entities\Meta;
 use PixiiBomb\Essentials\View\Components\Accordion;
-use PixiiBomb\Essentials\View\Items\AccordionItem;
 use PixiiBomb\Essentials\View\Components\Container;
+use PixiiBomb\Essentials\Entities\Items\AccordionItem;
 
-class ExampleController extends ContentController
+class ExampleController extends PageController
 {
     public function index(): View
     {
         $jumbotron = 'jumbotron';
 
-        $meta = new Meta('Home Page');
+        $meta = new Meta('Home');
 
-        /*$containers = [
+        $containers = [
             (new Container())
                 ->setAlias($jumbotron)
                 ->setView($this->localContent($jumbotron))
@@ -25,11 +25,13 @@ class ExampleController extends ContentController
             (new Container())
                 ->setAlias('FAQs')
                 ->setComponent($this->componentFunFaqs())
-        ]; */
+        ];
 
-        $content = new Content($meta, []);
+        $page = (new Page($containers))
+            ->setMeta($meta)
+            ->setBreadcrumbs(false);
 
-        return parent::layout($content);
+        return parent::page($page);
     }
 
     public function componentFunFaqs(): Accordion

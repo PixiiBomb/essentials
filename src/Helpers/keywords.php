@@ -13,6 +13,7 @@
         CREATE          = 'create',
         /* @group Configuration Variables */
         PIXII           = 'pixii',
+        PIXIIBOMB       = 'PixiiBomb',
         PREFIX          = 'prefix',
         COMPONENT_INSTANCEOF = 'component_instanceof',
         /** @group Database Tables */
@@ -22,7 +23,9 @@
         PLAYLISTS       = 'playlists',
         PLAYLIST_ITEMS  = 'playlistItems',
         PLAYLIST        = 'playlist',
-        PID             = 'playlist_id',
+        PLAYLIST_ID     = 'playlist_id',
+        SERIES_ID       = 'series',
+        PID             = 'pid',
         PSLUG           = 'playlist_slug',
         PIID            = 'playlist_items_id',
         CID             = 'channel_id',
@@ -40,6 +43,8 @@
         FFXV            = 'ffxv',
         ROI             = 'roi',
         /** @group Miscellaneous */
+        CREATED_AT      = 'created_at',
+        UPDATED_AT      = 'updated_at',
         D               = 'default',
         ID              = 'id',
         FIELDS          = 'fields',
@@ -69,6 +74,8 @@
         CONTENT         = 'content',
         BREADCRUMBS     = 'breadcrumbs',
         PAGE            = 'page',
+        NAVBAR          = 'navbar',
+        SIDEBAR         = 'sidebar',
         BODY            = 'body',
         INDEX           = 'index',
         ERROR           = 'error',
@@ -77,6 +84,7 @@
         COMPONENT       = 'component',
         HOME            = 'home',
         DOCS            = 'docs',
+        DOCUMENTATION   = 'documentation',
         STYLE           = 'style',
         FILE            = 'file',
         VIEW            = 'view',
@@ -104,7 +112,6 @@
         CLASSES         = 'classes',
         ALIAS           = 'alias',
         COLLAPSE        = 'collapse',
-        DOCUMENTATION   = 'documentation',
         CONTAINER_DATA  = 'container_data',
         INFO            = 'info',
         GUTTERS         = 'gutters',
@@ -140,6 +147,7 @@
         /** @group FOLDERS */
         COMPONENTS      = 'resources',
         ERRORS          = 'errors',
+        LAYOUT          = 'layout',
         LAYOUTS         = 'layouts',
         /** @group Components */
         ACCORDION       = 'accordion',
@@ -153,7 +161,13 @@
         GUT             = 'g-3',
         PADDING         = 'p-5',
         NOPM            = 'g-0',
-        /** @group Filenames */
+        /** @group Errors */
         E400            = 'errors.400',
         E404            = 'errors.404',
-        LAYOUT          = 'layouts.app';
+        /** @group ENVIRONMENT VARIABLES */
+        ENV_DEBUG       = 'APP_DEBUG';
+
+    const
+        LAYOUT_APP = 'primary-layout',
+        INCLUDE_SITE_NAME_IN_TITLE = 'include-site-name-in-title',
+        DEFAULT_NAVBAR_VIEW = 'default-navigation-view';

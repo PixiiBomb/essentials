@@ -15,7 +15,6 @@ class Accordion extends PixiiComponent
 
     public function getItems(): array
     {
-
         return $this->items;
     }
 
@@ -23,7 +22,7 @@ class Accordion extends PixiiComponent
 
     public function setItems(array $items = []): Accordion
     {
-        parent::filterItems(AccordionItem::class, $items);
+        $this->items = filterArray(AccordionItem::class, $items);
         return $this;
     }
 

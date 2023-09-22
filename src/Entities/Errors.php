@@ -1,6 +1,6 @@
 <?php
 
-use PixiiBomb\Essentials\Models;
+namespace PixiiBomb\Essentials\Entities;
 
 class Errors
 {
@@ -10,7 +10,7 @@ class Errors
     {
         throw match ($code) {
             self::INVALID_COMPONENT =>
-                new InvalidArgumentException("The \$object variable is not set in the blade file {$fileName}"),
+            new InvalidArgumentException("The \$object variable is not set in the blade file {$fileName}"),
             default => new InvalidArgumentException("Unknown error code: {$code}"),
         };
     }
