@@ -26,6 +26,7 @@
         PLAYLIST_ID     = 'playlist_id',
         SERIES_ID       = 'series',
         PID             = 'pid',
+        VID             = 'vid',
         PSLUG           = 'playlist_slug',
         PIID            = 'playlist_items_id',
         CID             = 'channel_id',

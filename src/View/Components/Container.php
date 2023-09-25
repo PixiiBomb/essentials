@@ -13,7 +13,7 @@ class Container extends PixiiComponent
     private ?string $attemptedView = null;
     protected ?Component $component = null;
     protected bool|string $isFluid = true;
-    protected array $data = [];
+    protected array|object $data = [];
 
     public function __construct($details = null, $errors = [])
     {
@@ -29,7 +29,7 @@ class Container extends PixiiComponent
         return $this;
     }
 
-    public function getData(): array { return $this->data; }
+    public function getData(): array|object { return $this->data; }
 
     public function getIsFluid(): bool|string { return $this->isFluid; }
 
@@ -85,7 +85,7 @@ class Container extends PixiiComponent
         return $this;
     }
 
-    public function setData(array $data): Container
+    public function setData(array|object $data): Container
     {
         $this->data = $data;
         return $this;

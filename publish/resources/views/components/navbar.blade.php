@@ -1,51 +1,104 @@
 @php
     /** * @var $details */
     if(!isset($details)) { return; }
+
+    use PixiiBomb\Essentials\Http\Controllers\UserController;
+
+    $items = $details?->getItems();
 @endphp
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<div class="fixed-top app-navigation">
 
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route(HOME) }}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Skills</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                </li>
-            </ul>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">{{ config('app.name') }}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            <div>
-                @auth()
-                    Welcome, {{ $user->username }} | <a href="{{ UserController::getRoute(LOGOUT) }}">Logout</a>
-                @endauth
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    @isset($items)
+                        @foreach($items as $item)
+                            @php
+                                $id = formatId($item->getLabel());
+                                $subnavId = "Subnav-{$id}";
+                                $view = $item?->getView()
+                            @endphp
+                            @empty($item->getItems())
+                                <li class="nav-item" id="{{ $id }}"
+                                    @isset($view)
+                                        data-subnav="{{ $subnavId }}"
+                                    @endisset
+                                >
+                                    <a class="nav-link
+                                    {{ urlIsActive($item->getRoute()) ? ' active' : '' }}
+                                    {{ $item->getDisabled() ? ' disabled' : '' }}"
+                                       aria-current="page"
+                                       href="{{ is_null($item->getView()) ? $item->getRoute() : '#' }}">
+                                        {{ $item->getLabel() }}
+                                    </a>
+                                </li>
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ $item->getLabel() }}
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        @foreach($item->getItems() as $group)
+                                            @if($group->getName())
+                                                <li class="nav-group">
+                                                    {{ $group->getName() }}
+                                                </li>
+                                            @endif
+                                            @foreach($group->getItems() as $sub)
+                                                <li>
+                                                    <a class="dropdown-item"
+                                                       href="{{ $sub->getRoute() }}">
+                                                        {{ titleCase($sub->getLabel()) }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                            <li><hr class="dropdown-divider"></li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @endempty
 
-                @guest()
-                    <a href="{{ UserController::getRoute(LOGIN) }}">Login</a>
-                    |
-                    <a href="{{ UserController::getRoute(REGISTER) }}">Register</a>
-                @endguest
+                        @endforeach
+                    @endisset
+                </ul>
+
+                <div>
+                    {{ UserController::getRoute(LOGIN) }}
+                </div>
+
             </div>
+        </div>
+    </nav>
 
+    <div id="Sub-Navigation-Views-Container">
+        <div class="container" id="Sub-Navigation-Views">
+            <div class="row">
+                <div class="col">
+                    @isset($items)
+                        @foreach($items as $item)
+                            @php
+                                $id = formatId($item->getLabel());
+                                $subnavId = "Subnav-{$id}";
+                                $view = $item?->getView()
+                            @endphp
+                            @isset($view)
+                                <div class="subnav" id="{{ $subnavId }}">
+                                    @include($item->getView())
+                                </div>
+                            @endisset
+                        @endforeach
+                    @endisset
+                </div>
+            </div>
         </div>
     </div>
-</nav>
+
+</div>
+

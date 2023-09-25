@@ -5,9 +5,9 @@
     if(!isset($details)) { return; }
 @endphp
 
-@if(!empty($details->getFilename()))
-    <div class="{{ $details->getIsFluid() }}">
-        @include($details->getFilename(), [CONTAINER_DATA => $details->getContainerData(), ERRORS => $errors])
+@if(!empty($details->getView()))
+    <div class="{{ $details->getIsFluid() }}" id="{{ $details->id() }}">
+        @include($details->getView(), [DETAILS => $details, ERRORS => $errors])
     </div>
 @endif
 
