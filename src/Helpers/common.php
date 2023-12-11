@@ -86,6 +86,11 @@ use Illuminate\Support\Str;
         return $prefix.Str::title(Str::slug($key));
     }
 
+    function formatDate($date)
+    {
+        return (new DateTime($date))->format('M. d, Y');
+    }
+
     /**
      * Ensure that array keys follow the same format. This function uses the Laravel
      * String helper class to convert the $key into kebab-case. This is a convenience function so that the Str class
@@ -179,7 +184,7 @@ use Illuminate\Support\Str;
         $path = "js/$script.js";
         $public = public_path($path);
         return file_exists($public)
-            ? asset($path)
+            ? $script
             : null;
     }
 

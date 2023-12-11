@@ -36,7 +36,7 @@ class Navigation
     public function __construct(?string $view = null)
     {
         $this->setView($view);
-        $this->setStylesheet(NAVBAR);
+        $this->setStylesheet('navbar.min');
     }
 
     /** --------------------------------------------------------------------------------------------- @region GETTERS */

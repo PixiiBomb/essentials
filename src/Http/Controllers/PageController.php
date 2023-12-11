@@ -17,7 +17,7 @@ class PageController extends Controller
      */
     private string $alias;
 
-    private string $layout = PAGE;
+    protected string $layout = PAGE;
 
     /** ----------------------------------------------------------------------------------------- @region CONSTRUCTOR */
     /**
