@@ -23,7 +23,6 @@ class Container extends PixiiComponent
 
     public function quickView(?string $view, bool $isFluid = true): Container
     {
-        $this->setAlias($view);
         $this->setView($view);
         $this->setIsFluid($isFluid);
         return $this;
