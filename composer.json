@@ -1,7 +1,7 @@
 {
     "name": "pixiibomb/essentials",
     "description": "A standard package for all PixiiBomb projects.",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "type": "library",
     "license": "MIT",
     "authors": [
