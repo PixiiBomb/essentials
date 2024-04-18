@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
-
 class PixiiBombEssentialsServiceProvider extends ServiceProvider
 {
     /**
@@ -14,15 +13,7 @@ class PixiiBombEssentialsServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        /*$this->publishes([
-            $this->fromPackage('publish/public', false) => public_path(),
-        ], 'public');*/
-        $this->publishes([
-            $this->fromPackage('publish/resources', false) => resource_path(),
-        ], 'resources');
-        $this->publishes([
-            $this->fromPackage('publish/config', false) => config_path(),
-        ], 'config');
+
     }
 
     /**
@@ -37,11 +28,20 @@ class PixiiBombEssentialsServiceProvider extends ServiceProvider
         Blade::if(DEBUG, function() {
             return env('APP_DEBUG');
         });
+
+        $this->publishes([
+            $this->fromPackage('publish/public') => public_path(),
+        ], 'public');
+        $this->publishes([
+            $this->fromPackage('publish/resources') => resource_path(),
+        ], 'resources');
+        $this->publishes([
+            $this->fromPackage('publish/config') => config_path(),
+        ], 'config');
     }
 
-    private function fromPackage($path, $isFile = true): string
+    private function fromPackage($path): string
     {
-        $extension = $isFile ? '.php' : null;
-        return __DIR__.'/../'.$path.$extension;
+        return __DIR__.'/../'.$path;
     }
 }

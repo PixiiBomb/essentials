@@ -9,8 +9,8 @@
 
     $items = [
             (new NavigationItem(HOME, HOME)),
-            (new NavigationItem(YOUTUBE, YOUTUBE))
-                ->setView('navigation.sub-navigation.youtube')
+            (new NavigationItem(PLAYLISTS, YOUTUBE))
+                //->setView('navigation.sub-navigation.youtube')
         ];
 
     $navigation->setItems($items);

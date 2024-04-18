@@ -2,6 +2,7 @@
 
 namespace PixiiBomb\Essentials\Entities;
 
+use Exception;
 use Illuminate\Support\Str;
 
 /**
@@ -44,18 +45,18 @@ class Meta
     public function setTitle(?string $title): Meta
     {
         $siteName = config('app.name');
-        $reTitle = $title ?? $this->getConfig(TITLE);
+        $pageTitle = $title ?? $this->getConfig(TITLE);
         $useSiteName = INCLUDE_SITE_NAME_IN_TITLE;
 
-        if($siteName == $reTitle && $useSiteName)
+        if($siteName == $pageTitle && $useSiteName)
         {
             $this->title = $siteName;
         }
         else
         {
             $fullTitle = $useSiteName
-                ? "{$siteName} - {$reTitle}"
-                : $reTitle;
+                ? "{$siteName} - {$pageTitle}"
+                : $pageTitle;
             $this->title = $fullTitle;
         }
         return $this;
@@ -97,6 +98,7 @@ class Meta
 
     private function getConfig(string $value): string
     {
-        return config("pixii.meta.{$value}");
+        $config = config("pixii.meta.{$value}");
+        return $config ?? "";
     }
 }

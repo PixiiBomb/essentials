@@ -74,26 +74,24 @@ class PixiiComponent extends Component
     }
 
     /**
-     * Set base class's (Component) public property (componentName) to the derived class's "nickname".
-     * @note The base class Component uses a public property (componentName) that can be set by the Developer, and is
-     * meant to act as an "alias" for the Component. To alleviate confusion in terminology, the componentName will
-     * be designated at the Component's "nickname". Whereas the term "alias" [ie: setAlias() and getAlias()] is meant
-     * to be a unique identifier that can be combined with an id attribute on a html element.
-     * @example If the derived class is 'App\View\Components\Accordion', then componentName will be 'Accordion'.
+     * Set `$this->componentName` to the basename of the child class.
+     * @example If the child class is 'App\View\Components\Accordion', then componentName will be 'Accordion'.
+     * @note Calling `$this->setName()` will automatically call `$this->setComponentView()`.
      * @return void
      */
-    private function setName(): void
+    protected function setName(): void
     {
         $this->componentName = basename(get_class($this));
         $this->setComponentView($this->componentName);
     }
 
     /**
-     * The component's view should be identical to the class name, written in kebab-case.
+     * The component's view should be identical to `$this->componentName`, written in kebab-case.
+     * @note Calling `$this->setName()` will automatically call this method.
      * @param string $name
      * @return void
      */
-    private function setComponentView(string $name): void
+    protected function setComponentView(string $name): void
     {
         $view = '';
         $split = preg_split('/(?=[A-Z])/', $name, -1,PREG_SPLIT_NO_EMPTY);
@@ -101,24 +99,24 @@ class PixiiComponent extends Component
         foreach($split as $word)
             $view .= strtolower($word) . '-';
 
-        $components = COMPONENTS;
         $view = rtrim($view, '-');
-
-        $this->filename = Str::slug($name); // this was strtolower($name)
+        $this->filename = Str::slug($view);
     }
 
     /**
      * An alias is a unique identifier for a Component (set by the Developer). The "alias" is not to be confused with
-     * the Component's "nickname" (componentName), which is the basename() of the Component.
+     * the Component's componentName, which is the basename() of the Component.
      * @param string $alias A unique name that will represent this component.
      * @return PixiiComponent
-     *@example Imagine an Accordion component that displays a list of Frequently Asked Questions. Assume the
+     * @example Imagine an Accordion component that displays a list of Frequently Asked Questions. Assume the
      * alias is 'FAQs'. When the Accordion is constructed, the main div might use id="Main-FAQs" and the collapsible
      * div might use id="Collapse-FAQs".
      */
     public function setAlias(string $alias): PixiiComponent
     {
-        $this->alias = $alias ?? formatRandomIdentifier();
+        $this->alias = $alias == "0"
+            ? formatRandomIdentifier()
+            : $alias;
         return $this;
     }
 
@@ -127,9 +125,9 @@ class PixiiComponent extends Component
      * in a Grid component can look like a Card, Image, or Video, etc. $this->style is a string that represents a
      * style option available for that Component. A child of ContentComponent should define a default $this->style,
      * and define a list of valid styles in the const STYLE array.
-     * @chain-method
+     * and define a list of valid styles in the const STYLE array.
      * @param string|null $style
-     * @return $this
+     * @return PixiiComponent
      */
     public function setStyle(?string $style = null): PixiiComponent
     {
