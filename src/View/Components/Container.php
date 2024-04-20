@@ -1,11 +1,12 @@
 <?php
 
-namespace PixiiBomb\Essentials\View\Components;
+namespace PixiiBomb\Essentials\Widgets;
 
 use Illuminate\View\Component;
 
-class Container extends PixiiComponent
+class Container extends Widget
 {
+    #region Properties
     protected ?string $title = null;
     protected ?string $subtitle = null;
     protected ?string $description = null;
@@ -14,12 +15,15 @@ class Container extends PixiiComponent
     protected ?Component $component = null;
     protected bool|string $isFluid = true;
     protected array|object $data = [];
+    #endregion
 
+    #region Constructor
     public function __construct($details = null, $errors = [])
     {
         parent::__construct($details, $errors);
         $this->setIsFluid($this->isFluid);
     }
+    #endregion
 
     public function quickView(?string $view, bool $isFluid = true): Container
     {
@@ -28,6 +32,7 @@ class Container extends PixiiComponent
         return $this;
     }
 
+    #region Getters
     public function getData(): array|object { return $this->data; }
 
     public function getIsFluid(): bool|string { return $this->isFluid; }
@@ -37,7 +42,9 @@ class Container extends PixiiComponent
     public function getComponent(): ?Component { return $this->component; }
 
     public function getAttemptedView(): ?string { return $this->attemptedView; }
+    #endregion
 
+    #region Setters
     /**
      * A title, subtitle and description can be passed into the $content object. This function combines 'title' and 'subtitle'
      * for convenience (since a subtitle is always optional with a title).
@@ -89,4 +96,17 @@ class Container extends PixiiComponent
         $this->data = $data;
         return $this;
     }
+    #endregion
+
+    #region Validation
+    /**
+     * Checks if the container is considered invalid.
+     * A container is deemed invalid if it lacks both a view and a component.
+     * @return bool Returns true if both getView() returns an empty value and getComponent() returns null, otherwise false.
+     */
+    public function isInvalid(): bool
+    {
+        return empty($this->getView()) && is_null($this->getComponent());
+    }
+    #endregion
 }

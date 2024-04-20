@@ -1,7 +1,11 @@
 <?php
 
-namespace PixiiBomb\Essentials\View\Components;
+namespace PixiiBomb\Essentials\Widgets;
 
-class Debug extends PixiiComponent
+class Debug extends Widget
 {
+    public function isInvalid(): bool
+    {
+        return false;
+    }
 }

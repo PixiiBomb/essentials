@@ -1,10 +1,10 @@
 <?php
 
-namespace PixiiBomb\Essentials\View\Components;
+namespace PixiiBomb\Essentials\Widgets;
 
 use Illuminate\Support\Str;
 
-class Form extends PixiiComponent
+class Form extends Widget
 {
     protected string $action = HASH;
     protected string $method = POST;
@@ -38,6 +38,11 @@ class Form extends PixiiComponent
     {
         $this->submit = Str::title($submit);
         return $this;
+    }
+
+    public function isInvalid(): bool
+    {
+        return false;
     }
 
 }

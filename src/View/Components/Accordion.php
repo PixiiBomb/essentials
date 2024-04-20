@@ -1,10 +1,10 @@
 <?php
 
-namespace PixiiBomb\Essentials\View\Components;
+namespace PixiiBomb\Essentials\Widgets;
 
 use PixiiBomb\Essentials\Entities\Items\AccordionItem;
 
-class Accordion extends PixiiComponent
+class Accordion extends Widget
 {
     #region Properties
     protected array $items = [];
@@ -15,6 +15,18 @@ class Accordion extends PixiiComponent
      * @var array
      */
     protected array $showIndexes = [];
+    #endregion
+
+    #region Constructor
+    /**
+     * Create a new component instance.
+     */
+    public function __construct(array $items = [], array $showIndexes = [])
+    {
+        parent::__construct();
+        $this->setItems($items);
+        $this->setShowIndexes($showIndexes);
+    }
     #endregion
 
     #region Getters
@@ -34,11 +46,10 @@ class Accordion extends PixiiComponent
      * Set the index values that should be displayed when the server renders the component to the browser.
      * @param array $showIndexes An array of indexes that correspond to valid indexes in the $items array.
      * @return $this
-     *@example If you want the first and second item in the accordion to be expanded,
+     * @example If you want the first and second item in the accordion to be expanded,
      * then pass in the array [0, 1] for the value of $showRender.
      * @note The getter and setter are only used for the initial setup. Once the Accordion has been rendered,
      * Bootstrap's built in css and javascript will handle visibility based on user interaction.
-     * @chain-method
      */
     public function setShowIndexes(array $showIndexes = []): Accordion
     {
@@ -47,4 +58,10 @@ class Accordion extends PixiiComponent
     }
     #endregion
 
+    #region Validation
+    public function isInvalid(): bool
+    {
+        return false;
+    }
+    #endregion
 }

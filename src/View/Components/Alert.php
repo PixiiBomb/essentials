@@ -1,26 +1,31 @@
 <?php
 
-namespace App\View\Components;
+namespace PixiiBomb\Essentials\Widgets;
 
-use Closure;
-use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
+use PixiiBomb\Essentials\Enums\BootstrapPalette;
 
-class Alert extends Component
+class Alert extends Widget
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
-    {
-        //
-    }
+    #region Properties
+    protected ?string $bootstrapPalette = null;
+    #endregion
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
+    #region Getters
+    public function getBootstrapPalette(): string { return $this->bootstrapPalette; }
+    #endregion
+
+    #region Setters
+    public function setBootstrapPalette(?BootstrapPalette $bootstrapPalette): Alert
     {
-        return view('components.alert');
+        $this->bootstrapPalette = $bootstrapPalette;
+        return $this;
     }
+    #endregion
+
+    #region Validation
+    public function isInvalid(): bool
+    {
+        return false;
+    }
+    #endregion
 }

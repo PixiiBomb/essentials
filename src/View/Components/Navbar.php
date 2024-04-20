@@ -1,8 +1,12 @@
 <?php
 
-namespace PixiiBomb\Essentials\View\Components;
+namespace PixiiBomb\Essentials\Widgets;
 
-class Navbar extends PixiiComponent
+class Navbar extends Widget
 {
 
+    public function isInvalid(): bool
+    {
+        return false;
+    }
 }

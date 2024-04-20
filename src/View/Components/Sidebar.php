@@ -1,8 +1,11 @@
 <?php
 
-namespace PixiiBomb\Essentials\View\Components;
+namespace PixiiBomb\Essentials\Widgets;
 
-class Sidebar extends PixiiComponent
+class Sidebar extends Widget
 {
-
+    public function isInvalid(): bool
+    {
+        return false;
+    }
 }
