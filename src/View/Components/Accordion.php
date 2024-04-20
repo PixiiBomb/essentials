@@ -2,24 +2,28 @@
 
 namespace PixiiBomb\Essentials\View\Components;
 
-use PixiiBomb\Essentials\View\Items\AccordionItem;
+use PixiiBomb\Essentials\Entities\Items\AccordionItem;
 
 class Accordion extends PixiiComponent
 {
+    #region Properties
+    protected array $items = [];
+
     /**
      * Each element in the $showOnRender array represents an index from the $items array that should be displayed when
      * the server renders the component to the browser.
      * @var array
      */
     protected array $showIndexes = [];
+    #endregion
 
-    public function getItems(): array
-    {
-        return $this->items;
-    }
+    #region Getters
+    public function getItems(): array { return $this->items; }
 
     public function getShowIndexes(): array {return $this->showIndexes; }
+    #endregion
 
+    #region Setters
     public function setItems(array $items = []): Accordion
     {
         $this->items = filterArray(AccordionItem::class, $items);
@@ -41,5 +45,6 @@ class Accordion extends PixiiComponent
         $this->showIndexes = $showIndexes;
         return $this;
     }
+    #endregion
 
 }

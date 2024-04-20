@@ -324,7 +324,7 @@ use Illuminate\Support\Str;
     /* Configs */
     function getPrimaryLayout()
     {
-        $key = LAYOUT_APP;
+        $key = DEFAULT_APP_LAYOUT;
         return config("pixii.config.{$key}");
     }
 

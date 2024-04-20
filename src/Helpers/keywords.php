@@ -78,6 +78,7 @@
         NAVBAR          = 'navbar',
         SIDEBAR         = 'sidebar',
         BODY            = 'body',
+        EXAMPLE         = 'example',
         INDEX           = 'index',
         ERROR           = 'error',
         DATA            = 'data',
@@ -169,6 +170,6 @@
         ENV_DEBUG       = 'APP_DEBUG';
 
     const
-        LAYOUT_APP = 'primary-layout',
+        DEFAULT_APP_LAYOUT = 'default-app-layout',
         INCLUDE_SITE_NAME_IN_TITLE = 'include-site-name-in-title',
         DEFAULT_NAVBAR_VIEW = 'default-navigation-view';

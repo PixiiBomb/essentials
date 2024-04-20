@@ -10,7 +10,7 @@ class PixiiComponent extends Component
     protected ?string $alias = null;
     protected ?string $filename = null;
     protected ?string $style = null;
-    protected array $items = [];
+
     protected array $styles = [];
 
     /**
@@ -64,7 +64,6 @@ class PixiiComponent extends Component
     public function getName(): ?string { return $this->componentName; }
     public function getComponentView(): ?string { return $this->filename; }
     public function getAlias(): ?string { return $this->alias; }
-    public function getItems(): array { return $this->items; }
     public function getStyle(): ?string { return $this->style; }
     public function getDetails(): ?PixiiComponent { return $this->details; }
 

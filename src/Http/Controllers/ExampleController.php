@@ -13,15 +13,10 @@ class ExampleController extends PageController
 {
     public function index(): View
     {
-        $jumbotron = 'jumbotron';
-
-        $meta = new Meta('Home');
+        $meta = (new Meta('Home On The Range'))
+                ->setKeywords('bada bing, bada boom');
 
         $containers = [
-            (new Container())
-                ->setAlias($jumbotron)
-                ->setView($this->localContent($jumbotron))
-                ->setIsFluid(true),
             (new Container())
                 ->setAlias('FAQs')
                 ->setComponent($this->componentFunFaqs())
@@ -44,7 +39,7 @@ class ExampleController extends PageController
             'soup',
             new AccordionItem(
                     'What\'s the best thing about Switzerland?',
-                    'Your Mom' //view('content.home.jumbotron')->with(['data' => 'what up'])
+                    'I don\'t know, but the flag is a big plus'
             ),
             new AccordionItem(
                     'What do you call someone with no body and no nose?',

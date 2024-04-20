@@ -46,7 +46,7 @@ class Meta
     {
         $siteName = config('app.name');
         $pageTitle = $title ?? $this->getConfig(TITLE);
-        $useSiteName = INCLUDE_SITE_NAME_IN_TITLE;
+        $useSiteName = config('pixii.'.INCLUDE_SITE_NAME_IN_TITLE);
 
         if($siteName == $pageTitle && $useSiteName)
         {
