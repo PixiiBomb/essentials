@@ -1,6 +1,6 @@
 <?php
 
-namespace PixiiBomb\Essentials\Widgets;
+namespace PixiiBomb\Essentials\View\Components;
 
 use Illuminate\Support\Str;
 

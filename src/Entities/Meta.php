@@ -45,8 +45,8 @@ class Meta
     public function setTitle(?string $title): Meta
     {
         $siteName = config('app.name');
-        $pageTitle = $title ?? $this->getConfig(TITLE);
-        $useSiteName = config('pixii.'.INCLUDE_SITE_NAME_IN_TITLE);
+        $pageTitle = $title ?? $this->getLocalization(TITLE);
+        $useSiteName = config('pixii.site.'.INCLUDE_SITE_NAME_IN_TITLE);
 
         if($siteName == $pageTitle && $useSiteName)
         {
@@ -70,7 +70,7 @@ class Meta
      */
     public function setDescription(?string $description): Meta
     {
-        $this->description = $description ?? $this->getConfig(DESCRIPTION);
+        $this->description = $description ?? $this->getLocalization(DESCRIPTION);
         return $this;
     }
 
@@ -81,7 +81,7 @@ class Meta
      */
     public function setAuthor(?string $author): Meta
     {
-        $this->author = $author ?? $this->getConfig(AUTHOR);
+        $this->author = $author ?? $this->getLocalization(AUTHOR);
         return $this;
     }
 
@@ -92,13 +92,13 @@ class Meta
      */
     public function setKeywords(?string $keywords): Meta
     {
-        $this->keywords = $keywords ?? $this->getConfig(KEYWORDS);
+        $this->keywords = $keywords ?? $this->getLocalization(KEYWORDS);
         return $this;
     }
 
-    private function getConfig(string $value): string
+    private function getLocalization(string $value): string
     {
-        $config = config("pixii.meta.{$value}");
+        $config = __("pixii-defaults.meta.{$value}");
         return $config ?? "";
     }
 }

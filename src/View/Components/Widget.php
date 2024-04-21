@@ -1,12 +1,11 @@
 <?php
 
-namespace PixiiBomb\Essentials\Widgets;
+namespace PixiiBomb\Essentials\View\Components;
 
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
-use PixiiBomb\Essentials\Interfaces\IWidget;
 
-class Widget extends Component implements iWidget
+class Widget extends Component
 {
     #region Properties
     protected ?string $alias = null;
