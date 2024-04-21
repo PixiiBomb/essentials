@@ -14,7 +14,6 @@ class Container extends Widget
     private ?string $attemptedView = null;
     protected ?Component $component = null;
     protected bool|string $isFluid = true;
-    protected array|object $data = [];
     #endregion
 
     #region Constructor
@@ -33,8 +32,6 @@ class Container extends Widget
     }
 
     #region Getters
-    public function getData(): array|object { return $this->data; }
-
     public function getIsFluid(): bool|string { return $this->isFluid; }
 
     public function getView(): ?string { return $this->view; }
@@ -81,19 +78,13 @@ class Container extends Widget
 
     public function setComponent(?Component $component): Container
     {
-        $this->component = $component;
+        $this->component = null;//$component;
         return $this;
     }
 
     public function setIsFluid(bool $isFluid): Container
     {
         $this->isFluid = $isFluid ? 'container-fluid' : 'container';
-        return $this;
-    }
-
-    public function setData(array|object $data): Container
-    {
-        $this->data = $data;
         return $this;
     }
     #endregion
@@ -106,7 +97,7 @@ class Container extends Widget
      */
     public function isInvalid(): bool
     {
-        return empty($this->getView()) && is_null($this->getComponent());
+        return empty($this->getView()) && empty($this->getComponent());
     }
     #endregion
 }

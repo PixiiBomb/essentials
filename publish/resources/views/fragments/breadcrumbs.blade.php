@@ -3,14 +3,8 @@
     $breadcrumbs = $page?->getBreadcrumbs();
 @endphp
 
-@if(!isset($page))
-    <x-debug>
-        The $page object is missing.
-    </x-debug>
-@endisset
-
 @isset($breadcrumbs)
-    <x-pixii::breadcrumbs :details="$breadcrumbs"/>
+    <x-breadcrumbs :details="$breadcrumbs"/>
 @else
     <x-debug>
         <kbd>Breadcrumbs</kbd>
