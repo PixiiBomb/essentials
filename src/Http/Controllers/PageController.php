@@ -17,7 +17,7 @@ class PageController extends Controller
      */
     private string $alias;
 
-    protected string $layout = PAGE;
+    protected string $layout = VERTICAL;
 
     /** ----------------------------------------------------------------------------------------- @region CONSTRUCTOR */
     /**
@@ -74,15 +74,22 @@ class PageController extends Controller
     {
         $route = \Illuminate\Support\Facades\Route::getCurrentRoute();
         $method = $route->getActionMethod();
-
         $routeInfo =  formatId($this->getAlias()." $method");
 
         $layout = $this->getLayout();
-        return view("layouts.{$layout}")
+        $layoutView = "layouts.{$layout}";
+
+        if(!view()->exists($layoutView))
+        {
+            $file = str_replace('.', '/', $layoutView);
+            dd("PageController cannot return page.\nPageController->layout = \"{$layout}\";\nThe layout: \"/resources/views/{$file}.blade.php\" does not exist");
+        }
+
+        return view($layoutView)
                 ->with([
-                    ROUTE => $routeInfo,
+                    ROUTE => $routeInfo,                // method name is 'index'
                     LAYOUT => formatId($layout),
-                    ID => formatId($this->getAlias()),
+                    ID => formatId($this->getAlias()), // ExampleController = Example
                     PAGE => $page
                 ]);
     }

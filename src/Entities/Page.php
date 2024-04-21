@@ -46,7 +46,7 @@ class Page
     /**
      * By default, the constructor will always create Breadcrumbs for the page, so that this parameter does not need to
      * be set when creating a new Content object. Breadcrumbs will always be located in the same place,
-     * determined by /resources/layouts/page.blade.php. Functionality is handled through the Breadcrumbs Component.
+     * determined by /resources/layouts/content.blade.php. Functionality is handled through the Breadcrumbs Component.
      * @chain-method
      * @param bool $breadcrumbs Set to true to enable breadcrumbs for this content page. If false, nothing will be
      * displayed in the 'breadcrumbs' placeholder on the layout.

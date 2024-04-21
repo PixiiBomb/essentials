@@ -77,6 +77,8 @@
         PAGE            = 'page',
         NAVBAR          = 'navbar',
         SIDEBAR         = 'sidebar',
+        VERTICAL        = 'vertical',
+        HORIZONTAL      = 'horizontal',
         BODY            = 'body',
         EXAMPLE         = 'example',
         INDEX           = 'index',
@@ -146,8 +148,10 @@
         STORE           = 'store',
         SHOW            = 'show',
         EDIT            = 'edit',
+        COMPONENTS      = 'components',
+        SITE            = 'site',
         /** @group FOLDERS */
-        COMPONENTS      = 'resources',
+        RESOURCES      = 'resources',
         ERRORS          = 'errors',
         LAYOUT          = 'layout',
         LAYOUTS         = 'layouts',
@@ -170,6 +174,7 @@
         ENV_DEBUG       = 'APP_DEBUG';
 
     const
-        DEFAULT_APP_LAYOUT = 'default-app-layout',
+        DEFAULT_APP_SCAFFOLD = 'default-app-scaffold',
         INCLUDE_SITE_NAME_IN_TITLE = 'include-site-name-in-title',
-        DEFAULT_NAVBAR_VIEW = 'default-navigation-view';
+        DEFAULT_NAVBAR_VIEW = 'default-navigation-view',
+        INCLUDE_COMPONENT_ALIAS_COMMENT = 'include-component-alias-comment';
