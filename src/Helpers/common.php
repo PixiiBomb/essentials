@@ -322,14 +322,14 @@ use Illuminate\Support\Str;
     }
 
     /* Configs */
-    function getPrimaryLayout()
+    function configDefaultAppScaffold()
     {
-        $key = DEFAULT_APP_LAYOUT;
-        return config("pixii.config.{$key}");
+        $key = DEFAULT_APP_SCAFFOLD;
+        return config("pixii.site.{$key}");
     }
 
     function getDefaultNavbarView()
     {
         $key = DEFAULT_NAVBAR_VIEW;
-        return config("pixii.config.{$key}");
+        return config("pixii.site.{$key}");
     }

@@ -30,6 +30,9 @@ class PixiiBombEssentialsServiceProvider extends ServiceProvider
         });
 
         $this->publishes([
+            $this->fromPackage('publish/lang') => lang_path(),
+        ], 'lang');
+        $this->publishes([
             $this->fromPackage('publish/public') => public_path(),
         ], 'public');
         $this->publishes([

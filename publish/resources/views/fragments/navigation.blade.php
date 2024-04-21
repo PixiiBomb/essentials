@@ -4,17 +4,24 @@
     $view = $navigation?->getView();
 @endphp
 
-@if(!isset($page))
-    <x-debug>
-        The $page object is missing.
-    </x-debug>
-@endisset
-
 @isset($view)
     @include($view)
 @else
     <x-debug>
-        <kbd>Navigation</kbd>
-        <pre>{{ var_dump($navigation) }}</pre>
+        <div class="alert alert-danger">
+            <kbd>Navigation Fragment</kbd><br><br>
+            <i class="bi bi-file-earmark-post"></i> <strong>/resources/views/fragments/navigation.blade.php</strong><br>
+            <i class="bi bi-bug-fill"></i> This fragment requires a <strong>$navigation</strong> and <strong>$view</strong> object.
+        </div>
+
+        <div class="alert alert-primary">
+            <kbd>$navigation</kbd><br><br>
+            <pre>{{ var_dump($navigation) }}</pre>
+        </div>
+
+        <div class="alert alert-primary">
+            <kbd>$view</kbd><br><br>
+            <pre>{{ var_dump($view) }}</pre>
+        </div>
     </x-debug>
 @endisset

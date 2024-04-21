@@ -3,12 +3,6 @@
     $containers = $page?->getContainers();
 @endphp
 
-@if(!isset($page))
-    <x-debug>
-        The $page object is missing.
-    </x-debug>
-@endisset
-
 @isset($containers)
     @foreach($containers as $container)
         <x-container :details="$container" :errors="$errors"/>

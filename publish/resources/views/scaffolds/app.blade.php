@@ -1,12 +1,9 @@
-@if(!isset($page))
-    <x-debug>
-        Unable to display app.blade.php - the <code>$page</code> object is not set.
-    </x-debug>
-@endisset
-
 @php
     /** @var $page  */
-    if($page == null) { return; }
+    if(!isset($page))
+    {
+        dd("Unable to display app.blade.php - the Page object is not set. Please refer to documentation for additional information");
+    }
 
     $meta = $page?->getMeta();
     $scripts = $page?->getScripts();
@@ -17,7 +14,7 @@
 <!doctype html>
 <html lang="">
 <head>
-    <title>{{ $meta->getTitle() }}</title>
+    <title>{{ isset($meta) ? $meta->getTitle() : config('app.name') }}</title>
 
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -32,6 +29,7 @@
     @endisset
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/templates.css') }}">
 
@@ -48,9 +46,9 @@
 
 <body id="{{ $route }}">
 
-<div id="Layout-{{ $layout ?? 'Unknown' }}">
+<main id="Layout-{{ $layout ?? 'Unknown' }}">
     @yield(LAYOUT)
-</div>
+</main>
 
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/bootstrap.js') }}"></script>
@@ -62,7 +60,9 @@
     @endforeach
 @endif
 
-@yield(FOOTER)
-
 </body>
+
+<footer>
+    @include('includes.footer')
+</footer>
 </html>
