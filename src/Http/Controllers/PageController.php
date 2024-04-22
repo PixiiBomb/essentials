@@ -73,10 +73,10 @@ class PageController extends Controller
     protected function page(Page $page): View
     {
         $route = \Illuminate\Support\Facades\Route::getCurrentRoute();
-        $method = $route->getActionMethod();
-        $routeInfo =  formatId($this->getAlias()." $method");
+        $id = formatId($this->getAlias().'-'.$route->getActionMethod());
 
         $layout = $this->getLayout();
+        $formatLayout = formatId($layout);
         $layoutView = "layouts.{$layout}";
 
         if(!view()->exists($layoutView))
@@ -87,9 +87,9 @@ class PageController extends Controller
 
         return view($layoutView)
                 ->with([
-                    ROUTE => $routeInfo,                // method name is 'index'
-                    LAYOUT => formatId($layout),
-                    ID => formatId($this->getAlias()), // ExampleController = Example
+                    ID => $id,
+                    LAYOUT => "Layout-{$formatLayout}",
+                    CONTROLLER => $this,
                     PAGE => $page
                 ]);
     }

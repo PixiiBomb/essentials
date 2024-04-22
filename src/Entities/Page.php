@@ -26,7 +26,7 @@ class Page
         $this->setMeta(new Meta(null));
         $this->setContainers($containers);
         $this->setScripts($scripts);
-        $this->setNavigation($navigation ?? new Navigation(getDefaultNavbarView()));
+        $this->setNavigation($navigation ?? new Navigation(config(DEFAULT_NAVIGATION_VIEW)));
     }
 
     public function getMeta(): ?Meta { return $this->meta; }

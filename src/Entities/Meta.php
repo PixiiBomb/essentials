@@ -2,7 +2,6 @@
 
 namespace PixiiBomb\Essentials\Entities;
 
-use Exception;
 use Illuminate\Support\Str;
 
 /**
@@ -46,7 +45,7 @@ class Meta
     {
         $siteName = config('app.name');
         $pageTitle = $title ?? $this->getLocalization(TITLE);
-        $useSiteName = config('pixii.site.'.INCLUDE_SITE_NAME_IN_TITLE);
+        $useSiteName = config(INCLUDE_SITE_NAME_IN_TITLE);
 
         if($siteName == $pageTitle && $useSiteName)
         {
@@ -98,7 +97,7 @@ class Meta
 
     private function getLocalization(string $value): string
     {
-        $config = __("pixii-defaults.meta.{$value}");
-        return $config ?? "";
+        $string = __("pixii-defaults.meta.{$value}");
+        return $string ?? "";
     }
 }

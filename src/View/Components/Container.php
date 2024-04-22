@@ -78,7 +78,7 @@ class Container extends Widget
 
     public function setComponent(?Component $component): Container
     {
-        $this->component = null;//$component;
+        $this->component = $component;
         return $this;
     }
 

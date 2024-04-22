@@ -11,7 +11,7 @@
     $navigationStylesheet = $page?->getNavigation()?->getStylesheet();
 @endphp
 
-<!doctype html>
+    <!doctype html>
 <html lang="">
 <head>
     <title>{{ isset($meta) ? $meta->getTitle() : config('app.name') }}</title>
@@ -44,9 +44,9 @@
     @endisset
 </head>
 
-<body id="{{ $route }}">
+<body id="{{ $id ?? 'Body-Unknown' }}">
 
-<main id="Layout-{{ $layout ?? 'Unknown' }}">
+<main id="{{ $layout ?? 'Layout-Unknown' }}">
     @yield(LAYOUT)
 </main>
 

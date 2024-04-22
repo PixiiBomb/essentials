@@ -150,6 +150,7 @@
         EDIT            = 'edit',
         COMPONENTS      = 'components',
         SITE            = 'site',
+        METHOD          = 'method',
         /** @group FOLDERS */
         RESOURCES      = 'resources',
         ERRORS          = 'errors',
@@ -170,11 +171,12 @@
         /** @group Errors */
         E400            = 'errors.400',
         E404            = 'errors.404',
-        /** @group ENVIRONMENT VARIABLES */
-        ENV_DEBUG       = 'APP_DEBUG';
+        /** @group LARAVEL CONFIG VARIABLES */
+        APP_DEBUG       = 'app.debug';
 
+    /** config/pixii.php */
     const
-        DEFAULT_APP_SCAFFOLD = 'default-app-scaffold',
-        INCLUDE_SITE_NAME_IN_TITLE = 'include-site-name-in-title',
-        DEFAULT_NAVBAR_VIEW = 'default-navigation-view',
-        INCLUDE_COMPONENT_ALIAS_COMMENT = 'include-component-alias-comment';
+        DEFAULT_APP_SCAFFOLD = 'pixii.site.default_app_scaffold',
+        INCLUDE_SITE_NAME_IN_TITLE = 'pixii.site.include_site_name_in_title',
+        DEFAULT_NAVIGATION_VIEW = 'pixii.site.default_navigation_view',
+        INCLUDE_COMPONENT_ALIAS_COMMENT = 'pixii.site.include_component_alias_comment';

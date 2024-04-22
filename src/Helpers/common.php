@@ -190,15 +190,15 @@ use Illuminate\Support\Str;
 
     function validateView(string $filename): ?string
     {
-        if(siteDebugOn())
+        if(config(APP_DEBUG))
         {
             return view()->exists($filename)
                 ? $filename
-                : E404; // @todo load from vendor
+                : E404;
         }
         else
         {
-            return null;
+            return $filename;
         }
     }
 
@@ -309,27 +309,4 @@ use Illuminate\Support\Str;
     function titleCase(string $value): string
     {
         return ucwords(strtolower($value));
-    }
-
-    function getFragment(string $fragment): string
-    {
-        return "fragments.{$fragment}";
-    }
-
-    function siteDebugOn()
-    {
-        return env(ENV_DEBUG);
-    }
-
-    /* Configs */
-    function configDefaultAppScaffold()
-    {
-        $key = DEFAULT_APP_SCAFFOLD;
-        return config("pixii.site.{$key}");
-    }
-
-    function getDefaultNavbarView()
-    {
-        $key = DEFAULT_NAVBAR_VIEW;
-        return config("pixii.site.{$key}");
     }

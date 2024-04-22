@@ -133,13 +133,6 @@ class Widget extends Component
      */
     public function render(): \Illuminate\Contracts\View\View
     {
-        if($this->isInvalid())
-        {
-            echo "render is invalid executed";
-            $name = $this->componentName;
-            dd("Component: {$name} is invalid");
-        }
-
         $filename = $this->getComponentView();
         return view("components.{$filename}");
     }

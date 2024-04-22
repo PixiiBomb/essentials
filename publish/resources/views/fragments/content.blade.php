@@ -9,7 +9,7 @@
     @endforeach
 @else
     <x-debug>
-        <kbd>fragments\page.blade.php</kbd>
+        <kbd>fragments\content.blade.php</kbd>
         <pre>{{ var_dump($page) }}</pre>
     </x-debug>
 @endisset

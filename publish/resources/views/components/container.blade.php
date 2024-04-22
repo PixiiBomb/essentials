@@ -9,14 +9,15 @@
 
 @if($details->isInvalid())
     <x-debug>
-        <div class="alert alert-danger">
-            <kbd>Unable to render Container component</kbd><br>
-            The file where this error is coming from: <strong>/resources/views/components/container.blade.php</strong><br>
-            You are seeing this message because you are attempting to use the Container component, but you "have nothing to contain". A Container should have a least a View, a Component, or both.
-        </div>
         <div class="alert alert-primary">
+            <div class="alert alert-danger">
+                <kbd>Unable to render Container component</kbd><br>
+                The file where this error is coming from: <strong>/resources/views/components/container.blade.php</strong><br>
+                You are seeing this message because you are attempting to use the Container component, but you "have nothing to contain". A Container should have a least a View, a Component, or both.
+            </div>
+
             <kbd>Container $details</kbd>
-            <pre>{{ var_dump($details) }}</pre>
+            <pre>{{ print_r($details) }}</pre>
         </div>
     </x-debug>
     @php return; @endphp

@@ -11,26 +11,28 @@ return [
     |
     */
 
-    SITE => [
+    'site' => [
         /**
          * This configuration value is used in Meta->setTitle()
          * When this variable is set to true, the page <title> will use 'Site Name - Page Title'
          * When this variable is set to false, the page <title> will use 'Page Title'
          */
-        INCLUDE_SITE_NAME_IN_TITLE => true,
+        'include_site_name_in_title' => true,
         /**
-         * The default layout that should be used for content throughout the application.
-         * You can specify layouts per page. If a layout is not specified, this will be the default data.
-         * @example If your default layout is /resources/views/layouts/app.blade.php, the value here should be 'layouts.app'
+         * The default scaffold that should be used for content throughout the application.
+         * @example If your default scaffold is /resources/views/scaffold/app.blade.php, the value here should be 'scaffold.app'
          */
-        DEFAULT_APP_SCAFFOLD => 'layouts.app',
+        'default_app_scaffold' => 'scaffolds.app',
         /**
          * The default component navbar view that should be used for content throughout the application.
          * You can specify navigation per page. If navigation is not specified, this will be the default data.
-         * @example If your default navbar is /resources/views/components/navbar.blade.php, the value here should be 'navbar'
+         * @example If your default navbar is /resources/views/navigation/navbar.blade.php, the value here should be 'navbar'
          */
-        DEFAULT_NAVBAR_VIEW => NAVBAR,
+        'default_navigation_view' => 'navbar'
+    ],
 
-        INCLUDE_COMPONENT_ALIAS_COMMENT => true
+    'components' => [
+        'include_component_alias_comment' => true,
     ]
+
 ];
