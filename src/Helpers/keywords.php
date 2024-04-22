@@ -179,4 +179,4 @@
         DEFAULT_APP_SCAFFOLD = 'pixii.site.default_app_scaffold',
         INCLUDE_SITE_NAME_IN_TITLE = 'pixii.site.include_site_name_in_title',
         DEFAULT_NAVIGATION_VIEW = 'pixii.site.default_navigation_view',
-        INCLUDE_COMPONENT_ALIAS_COMMENT = 'pixii.site.include_component_alias_comment';
+        INCLUDE_COMPONENT_ALIAS_COMMENT = 'pixii.components.include_component_alias_comment';

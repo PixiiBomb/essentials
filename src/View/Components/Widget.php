@@ -97,9 +97,7 @@ class Widget extends Component
      */
     public function setAlias(?string $alias): Widget
     {
-        $this->alias = empty($alias)
-            ? formatRandomIdentifier()
-            : $alias;
+        $this->alias = $alias;
         return $this;
     }
     #endregion
@@ -113,7 +111,6 @@ class Widget extends Component
      */
     public function isInvalid(): bool
     {
-        echo "widget isinvalid executed";
         return false;
     }
 
@@ -137,12 +134,6 @@ class Widget extends Component
         return view("components.{$filename}");
     }
 
-    public function resolveView()
-    {
-        echo "<h1>resolved View</h1>";
-        parent::resolveView();
-    }
-
     /**
      * This method can be called on the Component's blade file as a convenient way to create an identifier
      * attribute on an HTML element.
@@ -159,29 +150,32 @@ class Widget extends Component
     {
         $name = $this->getName();
         $alias = $this->getAlias();
-        return formatId("{$name} {$alias} {$i} {$suffix}", $hasSymbol);
+        $unique = empty($alias)
+            ? formatRandomIdentifier()
+            : $alias;
+        return formatId("{$name} {$unique} {$i} {$suffix}", $hasSymbol);
     }
 
     /**
      * If an alias has been set, it should be used in the component's blade file.
      * This convenience method was created to quickly create the div id tag to the standard naming convention.
-     * @return ?string If an alias is set, return the string: " id=\"{Component-Name}-{Alias}\"", otherwise return null.
+     * If an alias is set, return the string: " id=\"{Component-Name}-{Alias}\"", otherwise return null.
      */
-    public function getIdTag(): ?string
+    public function getIdTag(): void
     {
-        return (!empty($this->getAlias()))
+        echo (!empty($this->getAlias()))
             ? " id={$this->id()}"
             : null;
     }
 
     public function getComment(bool $isStartingTag): void
     {
-        $showComment = config('pixii.components.'.INCLUDE_COMPONENT_ALIAS_COMMENT);
+        $showComment = config(INCLUDE_COMPONENT_ALIAS_COMMENT);
         if($showComment)
         {
             $id = $this->id();
             $prefix = $isStartingTag
-                ? 'PixiiComponent'
+                ? 'Widget'
                 : '/';
             echo "<!-- {$prefix}: {$id} -->";
         }
