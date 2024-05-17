@@ -26,7 +26,7 @@ class PixiiBombEssentialsServiceProvider extends ServiceProvider
         Blade::componentNamespace('PixiiBomb\\Essentials\\View\\Components', PIXII);
 
         Blade::if(DEBUG, function() {
-            return env('APP_DEBUG');
+            return config('app.debug');
         });
 
         $this->publishes([

@@ -50,6 +50,7 @@
         ID              = 'id',
         FIELDS          = 'fields',
         NAME            = 'name',
+        IMAGE           = 'image',
         META            = 'meta',
         AUTHOR          = 'author',
         KEYWORDS        = 'keywords',
@@ -131,6 +132,8 @@
         PASSWORD        = 'password',
         DASHBOARD       = 'dashboard',
         CONFIRMATION    = 'confirmation',
+        WIDGET          = 'widget',
+        STRING          = 'string',
         VIDEO           = 'video',
         VIDEOS          = 'videos',
         COUNT           = 'count',
@@ -179,4 +182,5 @@
         DEFAULT_APP_SCAFFOLD = 'pixii.site.default_app_scaffold',
         INCLUDE_SITE_NAME_IN_TITLE = 'pixii.site.include_site_name_in_title',
         DEFAULT_NAVIGATION_VIEW = 'pixii.site.default_navigation_view',
-        INCLUDE_COMPONENT_ALIAS_COMMENT = 'pixii.components.include_component_alias_comment';
+        WIDGET_ACTIVE_THEME = 'pixii.widgets.active_theme',
+        WIDGET_INCLUDE_ALIAS_COMMENT = 'pixii.widgets.include_alias_comment';

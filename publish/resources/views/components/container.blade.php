@@ -5,6 +5,8 @@
 
     if(!isset($details))
         return;
+
+    $id = $details->id();
 @endphp
 
 @if($details->isInvalid())
@@ -23,6 +25,7 @@
     @php return; @endphp
 @endif
 
+{{ $details->getComment(true) }}
 <div class="{{ $details->getIsFluid() }}"{{ $details->getIdTag() }}>
 
     @if(!empty($details->getView()))
@@ -34,3 +37,4 @@
     @endif
 
 </div>
+{{ $details->getComment(false) }}

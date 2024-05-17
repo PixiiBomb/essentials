@@ -5,9 +5,11 @@ namespace PixiiBomb\Essentials\Http\Controllers;
 use Illuminate\View\View;
 use PixiiBomb\Essentials\Entities\Page;
 use PixiiBomb\Essentials\Entities\Meta;
-use PixiiBomb\Essentials\View\Components\Accordion;
-use PixiiBomb\Essentials\View\Components\Container;
-use PixiiBomb\Essentials\Entities\Items\AccordionItem;
+use PixiiBomb\Essentials\Entities\Section;
+use PixiiBomb\Essentials\Widgets\Accordion;
+use PixiiBomb\Essentials\Widgets\Carousel;
+use PixiiBomb\Essentials\Widgets\Items\AccordionItem;
+use PixiiBomb\Essentials\Widgets\Items\ImageItem;
 
 class ExampleController extends PageController
 {
@@ -16,20 +18,20 @@ class ExampleController extends PageController
         $meta = (new Meta('Home On The Range'))
                 ->setKeywords('bada bing, bada boom');
 
-        $containers = [
-            (new Container())
-                ->setAlias('FAQs')
-                ->setComponent($this->componentFunFaqs())
+        $sections = [
+            (new Section($this->widgetFunFaqs()))
+                ->setAlias('FAQs'),
+            (new Section($this->widgetImageCarousel()))
         ];
 
-        $page = (new Page($containers))
-            ->setMeta($meta)
-            ->setBreadcrumbs(false);
+        $page = (new Page($sections))
+            ->setMeta($meta);
+            //->setBreadcrumbs(false);
 
         return parent::page($page);
     }
 
-    public function componentFunFaqs(): Accordion
+    public function widgetFunFaqs(): Accordion
     {
         $items = [
             new AccordionItem(
@@ -61,7 +63,29 @@ class ExampleController extends PageController
 
         return (new Accordion())
             ->setItems($items)
-            ->setShowIndexes([0]);
+            ->setActiveIndexes([0]);
+    }
+
+    public function widgetImageCarousel(): Carousel
+    {
+        $items = [
+            new ImageItem(
+                "images/1.jpg",
+                'You boil the hell out of it.'
+            ),
+            new ImageItem( // @todo substitute this for something else
+                "images/2.jpg",
+                'You boil the hell out of it.'
+            ),
+            new ImageItem(
+                "images/3.jpg",
+                'You boil the hell out of it.'
+            ),
+        ];
+
+        return (new Carousel())
+            ->setItems($items)
+            ->setActiveIndex(0);
     }
 
 }

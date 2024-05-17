@@ -3,7 +3,6 @@
 namespace PixiiBomb\Essentials\Entities;
 
 use PixiiBomb\Essentials\View\Components\Breadcrumbs;
-use PixiiBomb\Essentials\View\Components\Container;
 
 /**
  * The primary object to push to a View. This class is commonly referred to as "The Page Object" or simply "$page".
@@ -13,28 +12,28 @@ use PixiiBomb\Essentials\View\Components\Container;
 class Page
 {
     protected ?Meta $meta = null;
-    protected ?Breadcrumbs $breadcrumbs = null;
+    //protected ?Breadcrumbs $breadcrumbs = null;
     protected array $stylesheets = [];
 
     /**
-     * @param array $containers
+     * @param array $sections
      * @param array $scripts
      * @param ?Navigation $navigation
      */
-    public function __construct(protected array $containers = [], protected array $scripts = [], protected ?Navigation $navigation = null)
+    public function __construct(protected array $sections = [], protected array $scripts = [], protected ?Navigation $navigation = null)
     {
         $this->setMeta(new Meta(null));
-        $this->setContainers($containers);
+        $this->setSections($sections);
         $this->setScripts($scripts);
         $this->setNavigation($navigation ?? new Navigation(config(DEFAULT_NAVIGATION_VIEW)));
     }
 
     public function getMeta(): ?Meta { return $this->meta; }
-    public function getContainers(): array { return $this->containers; }
+    public function getSections(): array { return $this->sections; }
     public function getNavigation(): ?Navigation { return $this->navigation; }
     public function getScripts(): array { return $this->scripts; }
     public function getStylesheets(): array { return $this->stylesheets; }
-    public function getBreadcrumbs(): ?Breadcrumbs { return $this->breadcrumbs; }
+    //public function getBreadcrumbs(): ?Breadcrumbs { return $this->breadcrumbs; }
 
 
     public function setMeta(?Meta $meta): Page
@@ -52,29 +51,29 @@ class Page
      * displayed in the 'breadcrumbs' placeholder on the layout.
      * @return $this
      */
-    public function setBreadcrumbs(bool $breadcrumbs = Breadcrumbs::DEFAULT_SHOW_BREADCRUMBS): Page
+    /*public function setBreadcrumbs(bool $breadcrumbs = Breadcrumbs::DEFAULT_SHOW_BREADCRUMBS): Page
     {
         $this->breadcrumbs = (new Breadcrumbs())->setShowBreadcrumbs($breadcrumbs);
         return $this;
-    }
+    } */
 
     /**
-     * Checks to see if each item in the $containers array is an instance of Container, and updates the valid
+     * Checks to see if each item in the $sections array is an instance of Container, and updates the valid
      * items with a key that combines the Component's nickname and alias.
      * @note The Component's nickname ($componentName) and alias are used as the unique identifiers for items in the
      * $filter array sent to the $content object. Objects keys should be unique, therefore, if two items have the same
      * identifier, the newer one will replace the older one. It's the Developer's responsibility to avoid using the
      * same identifier for multiple items.
-     * @param array $containers Each item in the $containers array should be an object of the Container class.
+     * @param array $sections Each item in the $sections array should be an object of the Container class.
      * @return $this
      */
-    public function setContainers(array $containers): Page
+    public function setSections(array $sections): Page
     {
         $filter = [];
 
-        foreach($containers as $i=>$item)
+        foreach($sections as $i=>$item)
         {
-            if($item instanceof Container)
+            if($item instanceof Section)
             {
                 $key = $item->getAlias();
                 if(is_null($item->getAlias()))
@@ -82,11 +81,11 @@ class Page
                     $key = $i;
                     $item->setAlias($i);
                 }
-                $filter[formatArrayKey($key)] = $item;
+                $filter[formatArrayKey($i)] = $item;
             }
         }
 
-        $this->containers = $filter;
+        $this->sections = $filter;
         return $this;
     }
 

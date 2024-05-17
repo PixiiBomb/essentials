@@ -1,12 +1,15 @@
 <?php
 
-namespace PixiiBomb\Essentials\Entities\Items;
+namespace PixiiBomb\Essentials\Widgets\Items;
 
 use Illuminate\View\View;
 
-class AccordionItem
+class AccordionItem extends CollectionItem
 {
-    public function __construct(protected $header, protected string|View $body) {}
+    public function __construct(protected $header, protected string|View $body)
+    {
+        $this->type = ACCORDION;
+    }
 
     public function getHeader() { return $this->header; }
     public function getBody(): string|View { return $this->body; }

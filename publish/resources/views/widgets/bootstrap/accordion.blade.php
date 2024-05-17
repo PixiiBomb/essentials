@@ -1,31 +1,37 @@
 @php
     /**
-     * @var $details
+     * Vendor: pixiibomb/essentials
+     * Controller: PixiiBomb\Essentials\Widgets\Accordion
+     * @var $widget
      */
-    if(!isset($details)) { return; }
+
+    if(!isset($widget))
+        return;
 @endphp
 
-<div class="accordion" id="{{ $details->id() }}">
+<div class="accordion">
     <div class="accordion-item">
 
-        @if(!empty($details->getItems()))
-            @php $i = 0; @endphp
-            @foreach($details->getItems() as $item)
-                @php $id = $details->id(false, $i); @endphp
+        @if(!empty($widget->getItems()))
+
+            @foreach($widget->getItems() as $i=>$item)
+
+                @php $id = $widget->id(false, $i); @endphp
+
                 <h2 class="accordion-header">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{$id}}" aria-expanded="true" aria-controls="{{$id}}">
                         {{ $item->getHeader() ?? 'Accordion Header' }}
                     </button>
                 </h2>
-                <div id="{{$id}}" class="accordion-collapse collapse {{ in_array($i, $details->getShowIndexes()) ? 'show' : null }}" data-bs-parent="{{ $details->id(true) }}">
+                <div id="{{$id}}" class="accordion-collapse collapse {{ in_array($i, $widget->getActiveIndexes()) ? 'show' : null }}" data-bs-parent="{{ $widget->id(true) }}">
                     <div class="accordion-body">
                         {{ $item->getBody() ?? 'Accordion Body' }}
                     </div>
                 </div>
-                @php $i++; @endphp
+
             @endforeach
         @endif
 
-
     </div>
 </div>
+

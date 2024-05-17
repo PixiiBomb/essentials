@@ -11,7 +11,7 @@
     $navigationStylesheet = $page?->getNavigation()?->getStylesheet();
 @endphp
 
-    <!doctype html>
+<!doctype html>
 <html lang="">
 <head>
     <title>{{ isset($meta) ? $meta->getTitle() : config('app.name') }}</title>

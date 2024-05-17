@@ -274,12 +274,10 @@ use Illuminate\Support\Str;
      */
     function filterArray(string $type, array $items): array
     {
-        foreach ($items as $key => $item) {
-            if (!$item instanceof $type) {
-                unset($items[$key]);
-            }
-        }
-        return $items;
+        return array_filter($items, function ($item) use ($type)
+        {
+            return $item instanceof $type;
+        });
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace PixiiBomb\Essentials\Entities\Items;
+namespace PixiiBomb\Essentials\Widgets\Items;
 
 use Illuminate\Support\Facades\Route;
 use PixiiBomb\Essentials\Entities\Navigation;
@@ -8,7 +8,7 @@ use PixiiBomb\Essentials\Entities\Navigation;
 /**
  * Represents an item in a navigation menu. Often used in navigation-based components such as Navbar.
  */
-class NavigationItem
+class NavigationItem extends CollectionItem
 {
     /** ------------------------------------------------------------------------------------------ @region PROPERTIES */
     /**
@@ -35,6 +35,7 @@ class NavigationItem
      */
     public function __construct(protected string $route, protected string $label, protected ?string $icon = null)
     {
+        $this->type = 'navigation';
         $this->setRoute($route);
         $this->setLabel($label);
         $this->setIcon($icon);

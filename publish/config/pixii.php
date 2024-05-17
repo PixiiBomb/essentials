@@ -31,8 +31,8 @@ return [
         'default_navigation_view' => 'navbar'
     ],
 
-    'components' => [
-        'include_component_alias_comment' => true,
+    'widgets' => [
+        'active_theme' => 'bootstrap',
+        'include_alias_comment' => true,
     ]
-
 ];

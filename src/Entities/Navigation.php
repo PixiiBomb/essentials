@@ -2,7 +2,7 @@
 
 namespace PixiiBomb\Essentials\Entities;
 
-use PixiiBomb\Essentials\Entities\Items\NavigationItem;
+use PixiiBomb\Essentials\Widgets\Items\NavigationItem;
 
 class Navigation
 {

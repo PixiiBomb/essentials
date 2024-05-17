@@ -95,7 +95,7 @@ class PageController extends Controller
     }
 
     /**
-     * The "index file" for all Content should be located in /resources/views/content/index.blade.php.
+     * The "index file" for all Content should be located in /resources/views/content/portfolio.blade.php.
      * @return string The "index file" represented in dot-notation.
      */
     protected function directoryIndex(): string
