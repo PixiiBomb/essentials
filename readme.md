@@ -19,7 +19,7 @@ The `PixiiBombEssentialsServiceProvider` is intended to do the following:
 
 Laravel does an excellent job of creating a better starting point for backend development. This package takes the starting point a few steps further by providing a cohesive system to implement views without rewriting large chunks of code. This is great for templated websites that you plan to build upon, without having to rewrite some boiler-plate logic from scratch every time you start a new project.
 
-Even if you're not interested in PageController logic, you might find it helpful to use PixiiComponents. These are Bootstrap-based components that you can tailor to your needs for all of your projects. You can choose to use the components without the PageController logic, or take advantage of everything this package has to offer!
+> Even if you're not interested in PageController logic, you might find it helpful to use PixiiComponents. These are Bootstrap-based components that you can tailor to your needs for all of your projects. You can choose to use the components without the PageController logic, or take advantage of everything this package has to offer!
 
 # Principles
 
