@@ -1,7 +1,6 @@
 {
     "name": "pixiibomb/essentials",
     "description": "A standard package for all PixiiBomb projects.",
-    "version": "1.7.3",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -24,10 +23,10 @@
             "providers": [
                 "PixiiBomb\\Essentials\\PixiiBombEssentialsServiceProvider"
             ]
+        },
+        "repository": {
+            "type": "git",
+            "url": "https://github.com/PixiiBomb/essentials.git"
         }
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/PixiiBomb/essentials.git"
     }
 }
