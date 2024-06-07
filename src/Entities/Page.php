@@ -2,8 +2,6 @@
 
 namespace PixiiBomb\Essentials\Entities;
 
-use PixiiBomb\Essentials\View\Components\Breadcrumbs;
-
 /**
  * The primary object to push to a View. This class is commonly referred to as "The Page Object" or simply "$page".
  * The purpose of this object is to hold data for a typical webpage, such the page's metadata, individual sections
@@ -58,12 +56,7 @@ class Page
     } */
 
     /**
-     * Checks to see if each item in the $sections array is an instance of Container, and updates the valid
-     * items with a key that combines the Component's nickname and alias.
-     * @note The Component's nickname ($componentName) and alias are used as the unique identifiers for items in the
-     * $filter array sent to the $content object. Objects keys should be unique, therefore, if two items have the same
-     * identifier, the newer one will replace the older one. It's the Developer's responsibility to avoid using the
-     * same identifier for multiple items.
+     * Checks to see if each item in the $sections array is an instance of Section.
      * @param array $sections Each item in the $sections array should be an object of the Container class.
      * @return $this
      */
@@ -75,12 +68,6 @@ class Page
         {
             if($item instanceof Section)
             {
-                $key = $item->getAlias();
-                if(is_null($item->getAlias()))
-                {
-                    $key = $i;
-                    $item->setAlias($i);
-                }
                 $filter[formatArrayKey($i)] = $item;
             }
         }

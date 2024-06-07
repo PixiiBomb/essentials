@@ -10,7 +10,7 @@ class Widget
 {
     use HasAlias;
 
-    protected int|string|null $key = null;
+    protected int|string|null $index = null;
     protected ?string $name = null;
     protected ?string $filename = null;
     protected ?string $attemptedFilename = null;
@@ -23,16 +23,16 @@ class Widget
         $this->setFilename();
     }
 
-    public function getKey(): int|string|null { return $this->key; }
+    public function getIndex(): int|string|null { return $this->index; }
     public function getName(): ?string { return $this->name; }
     public function getFilename(): ?string { return $this->filename; }
     public function getAttemptedFilename(): ?string { return $this->attemptedFilename; }
     public function getStructure(): ?string { return $this->structure; }
     public function getTheme(): ?string { return $this->theme; }
 
-    public function setKey(int|string|null $key): Widget
+    public function setIndex(int|string|null $index): Widget
     {
-        $this->key = $key;
+        $this->index = $index;
         return $this;
     }
 
@@ -87,9 +87,17 @@ class Widget
         $name = $this->getName();
         $alias = $this->getAlias();
         $unique = empty($alias)
-            ? empty($this->key) ? formatRandomIdentifier() : $this->key
+            ? empty($this->index) ? formatRandomIdentifier() : $this->index
             : "{$alias}";
         return formatId("{$name} {$unique}");
+    }
+
+    public function getIdTag(): string
+    {
+        $name = $this->getName();
+        $alias = $this->getAlias();
+        $index = $this->getIndex();
+        return "id='{$name}-{$alias}-{$index}'";
     }
     #endregion
 }
