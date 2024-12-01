@@ -3,6 +3,7 @@
 1. Install the package
 2. Run `php artisan vendor:publish --provider="PixiiBomb\Essentials\PixiiBombEssentialsServiceProvider"`
 3. Run `php artisan migrate`
+4. Winning
 
 # About the ServiceProvider
 
