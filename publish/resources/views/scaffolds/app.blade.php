@@ -66,3 +66,7 @@
     @include('includes.footer')
 </footer>
 </html>
+
+@debug
+@dump($page)
+@enddebug

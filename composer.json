@@ -12,11 +12,7 @@
     "autoload": {
         "psr-4": {
             "PixiiBomb\\Essentials\\": "src"
-        },
-        "files": [
-            "src/Helpers/common.php",
-            "src/Helpers/keywords.php"
-        ]
+        }
     },
     "extra": {
         "laravel": {

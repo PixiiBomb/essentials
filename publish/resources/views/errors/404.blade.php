@@ -2,8 +2,8 @@
     $route = \Illuminate\Support\Facades\Route::getCurrentRoute();
 @endphp
 
-<h1><kbd>DEBUG</kbd> ERROR 404</h1>
-<p>You will usually see this page when setting a view using <code>setView()</code>.</p>
+<h2><kbd>DEBUG</kbd> ERROR 404</h2>
+<p>You will typically encounter this page when attempting to embed a view:</p>
 
 @isset($route)
     <div class="card">
@@ -27,7 +27,7 @@
             @if(!is_null($details->getAttemptedView()))
                 <p>It seems as if you were attempting to set the view <kbd>{{ $details->getAttemptedView() }}</kbd> but that file path doesn't seem to exist in <strong>/resources/views/</strong>.</p>
             @endif
-            <pre>{{ var_dump($details) }}</pre>
+            @dump($details)
         </div>
     </div>
 @endisset

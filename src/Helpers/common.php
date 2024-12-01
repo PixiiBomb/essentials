@@ -86,9 +86,12 @@ use Illuminate\Support\Str;
         return $prefix.Str::title(Str::slug($key));
     }
 
-    function formatDate($date)
+    /**
+     * @throws DateMalformedStringException
+     */
+    function formatDate($date): string
     {
-        return (new DateTime($date))->format('M. d, Y');
+        return new DateTime($date)->format('M. d, Y');
     }
 
     /**
@@ -132,7 +135,8 @@ use Illuminate\Support\Str;
      */
     function controllerNickname(string $controller): string
     {
-        return str_replace(CONTROLLER, '', strtolower(basename($controller)));
+        $lastPart = substr($controller, strrpos($controller, '\\') + 1);
+        return str_replace(CONTROLLER, '', strtolower($lastPart));
     }
 
     /**

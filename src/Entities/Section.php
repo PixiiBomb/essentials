@@ -33,7 +33,6 @@ class Section
     public function getDescription(): ?string { return $this->description; }
     public function getTagLine(): ?string { return $this->tagLine; }
     public function getAsset(): Widget|Component|string|null { return $this->asset; }
-    public function getType(): ?string { return $this->type; }
     #endregion
 
     #region Setters

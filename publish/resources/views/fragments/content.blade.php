@@ -22,16 +22,16 @@
             $type = $section->getType();
             $displayType = Str::Studly($type);
             $asset = $section->getAsset();
-            $name = is_null($asset->getName())
+            /*$name = is_null($asset->getName())
                 ? '[UNKNOWN]'
-                : $asset->getName();
+                : $asset->getName();*/
             $filename = $asset->getFilename();
         @endphp
 
         <section id="Section-{{ $unique }}" data-index="{{ $index }}">
 
             @if($showComments)
-                <!-- ({{$index}}) Type: {{$displayType}} | Name: {{ $name }} | Alias: {{ $displayAlias }} | Filename: {{ $filename }} -->
+                <!-- ({{$index}}) Type: {{$displayType}} | Alias: {{ $displayAlias }} | Filename: {{ $filename }} -->
             @endif
 
             @switch($type)

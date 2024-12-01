@@ -95,7 +95,7 @@ class PageController extends Controller
     }
 
     /**
-     * The "index file" for all Content should be located in /resources/views/content/portfolio.blade.php.
+     * The "index file" for all Content should be located in `/resources/views/pages/portfolio.blade.php`.
      * @return string The "index file" represented in dot-notation.
      */
     protected function directoryIndex(): string
@@ -106,9 +106,9 @@ class PageController extends Controller
     }
 
     /**
-     * The 'subdirectory' should be a folder located in /resources/views/content/ that corresponds with the name
+     * The 'subdirectory' should be a folder located in `/resources/views/pages/` that corresponds with the name
      * of the child Controller.
-     * @example The subdirectory for HomeController is 'home' located in: /resources/views/content/home/.
+     * @example The subdirectory for HomeController is 'home' located in: `/resources/views/content/home/`.
      * @param string|null $filename The name of a file located within a child Controller's subdirectory.
      * @return string A subdirectory path written in dot-notation.
      */
